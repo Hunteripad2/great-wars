@@ -1,0 +1,55 @@
+body {
+    background: #2e2e2e;
+    color: white;
+    font-family: sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+.main-menu {
+    background-image: url("mainmenu-background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo {
+    text-align: center;
+    padding-top: 5%;
+    font-size: 100px;
+}
+
+.menu {
+    list-style: none;
+    text-align: center;
+    padding-top: 4%;
+}
+
+.menu__item {
+    padding-bottom: 3%;
+}
+
+.menu__option {
+    font-size: 36px;
+}
+
+.menu__option :hover, .return-button :hover {
+    color: grey;
+}
+
+.choose-scenario {
+    text-align: center;
+    font-size: 80px;
+}
+
+.scenarios__image {
+    width: 32%;
+    padding: 0.5%;
+}
