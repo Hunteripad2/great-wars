@@ -8,16 +8,11 @@ a {
     color: white;
     text-decoration-line: none;
 }
-
-button {
-    border: none;
-    background: none;
+/*
+header {
+    background-color: #484848;
 }
-
-caption {
-    caption-side: bottom;
-}
-
+*/
 .main-menu {
     background-image: url("mainmenu-background-image.jpg");
     background-repeat: no-repeat;
@@ -38,14 +33,15 @@ caption {
 
 .menu__item {
     padding-bottom: 3%;
+    width: 98%;
 }
 
-.menu__option {
+.menu__option, .return-to-mainmenu__link {
     font-size: 36px;
 }
 
-.menu__option :hover, 
-.return-button :hover {
+.menu__option:hover, 
+.return-to-mainmenu__link:hover {
     color: grey;
 }
 
@@ -60,7 +56,45 @@ caption {
     border-radius: 8%;
 }
 
-.return-button {
-    padding: 1.5%;
-    font-size: 30px;
+.return-to-mainmenu {
+    padding: 1%;
+    width: fit-content;
+}
+
+.progress-counter {
+    width: 50%;
+    text-align: center;
+}
+
+.logo2 {
+    position: absolute;
+    top: 0%;
+    left: 35%;
+    font-size: 80px;
+    line-height: 1%;
+}
+
+.turn-counter {
+    margin-left: 40%;
+    width: 15%;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 0px 0px 90px 90px;
+    background-color: #484848;
+}
+
+.turn-counter__button {
+    width: 35px;
+    vertical-align: middle;
+    background: none;
+    border: none;
+    margin-left: 3%;
+}
+
+.map-page {
+    background-image: url("mapmenu-background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
 }
