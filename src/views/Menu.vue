@@ -1,0 +1,172 @@
+<template>
+    <main>
+        <h1 class="logo">Великие войны</h1>
+        <ul class="menu">
+            <li class="menu__item"><a href="scenarios.html" class="menu__option">Начать</a></li>
+            <li class="menu__item"><a href="" class="menu__option">Ресурсы</a></li>
+            <li class="menu__item"><a href="" class="menu__option">Настройки</a></li>
+        </ul>
+    </main>
+</template>
+
+
+<style>
+body {
+    background: #2e2e2e;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+.main-menu {
+    background-image: url("../assets/mainmenu-background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo {
+    text-align: center;
+    padding-top: 5%;
+    font-size: 100px;
+}
+
+.menu {
+    list-style: none;
+    text-align: center;
+    padding-top: 4%;
+}
+
+.menu__item {
+    padding-bottom: 3%;
+    width: 98%;
+}
+
+.menu__option, .return-to-mainmenu__link {
+    font-size: 36px;
+}
+
+.menu__option:hover, 
+.return-to-mainmenu__link:hover {
+    color: grey;
+}
+
+.choose-scenario {
+    text-align: center;
+    font-size: 80px;
+}
+
+.scenarios {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.scenarios__item {
+    width: 30%;
+}
+
+.scenarios__image {
+    width: 100%;
+    padding: 0.5%;
+    border-radius: 8%;
+}
+
+.return-to-mainmenu {
+    margin: 1%;
+    width: fit-content;
+}
+
+.header__return-to-main-menu {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    z-index: 1;
+}
+
+.header__top {
+    background-color: #484848;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    position: relative;
+}
+
+.header__logo {
+    text-align: center; 
+    font-size: 80px;
+    margin: 0;
+    z-index: 1;
+}
+
+.turn-counter {
+    margin-left: 40%;
+    width: 15%;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 0px 0px 90px 90px;
+    background-color: #484848;
+}
+
+.turn-counter__button {
+    width: 35px;
+    vertical-align: middle;
+    margin-left: 3%;
+}
+
+.turn-counter__image {
+    width: 100%;
+}
+
+.map-page {
+    background-image: url("../assets/mapmenu-background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.header__background-right-image {
+    background-image: url("../assets/mapmenu-background-image.jpg");
+    position: absolute;
+    top:0;
+    right:0;
+    width: 30%;
+    height: 100%;
+    opacity: .5;
+    background-position: center;
+    background-size: cover;
+}
+
+.music-buttons {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    z-index: 1;
+}
+
+.music-buttons__play-button, 
+.music-buttons__musiclist-button {
+    width: 65px;
+}
+
+.music-buttons__play-image,
+.music-buttons__musiclist-image {
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .header__logo {
+        font-size: 60px;
+    }
+}
+</style>
