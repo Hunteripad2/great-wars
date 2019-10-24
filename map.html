@@ -1,0 +1,42 @@
+<!Doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Великие войны - Карта</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__top">
+                <div class="header__background-left-image"></div>
+                <div class="header__background-right-image"></div>
+                <div class="header__return-to-main-menu">
+                    <a href="main.html" class="return-to-mainmenu__link">Главное меню</a>
+                </div>
+                <img src="logo.png" class="header__logo">
+                <div class="music-buttons">
+                    <button class="music-buttons__play-button">
+                        <img class="music-buttons__play-image" src="play-music-button.png">
+                    </button>
+                    <button class="music-buttons__musiclist-button" onclick="showMusicMenu()">
+                        <img class="music-buttons__musiclist-image" src="music-list-button.png" title="Список композиций">
+                    </button>
+                </div>
+            </div>
+            <div class="turn-counter">
+                <time datetime="1910-1-1" class="turn-counter__date">Январь 1910г.</time>
+                <button class="turn-counter__button"><img class="turn-counter__image" src="turn-button.png"></button>
+            </div> 
+        </header>
+        <main>
+            <div class="map-background"></div>
+            <div class="map">
+                <img src="map.png">
+            </div>
+        </main>
+        <div id="blackening" onclick="closeTabs()"></div>
+        <div class="music-menu">
+        </div>
+    </body>
+</html>
+<script src="scripts.js"></script>
