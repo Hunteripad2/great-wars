@@ -64,17 +64,84 @@ button:focus {
 }
 
 .scenarios__item {
+    height: 550px;   /*Костыль*/
     width: 30%;
 }
 
-.scenarios__image {
+.scenarios__blackout {
+    background-color: #202020;
+    position: relative;
+    left: 0%;
+    top: 0%;
     width: 100%;
-    padding: 0.5%;
+    height: 100%;
+    border-radius: 8%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.scenarios__item:hover .scenarios__blackout {
+    opacity: 0.8;
+}
+
+.scenarios__item:hover .scenarios__date,
+.scenarios__item:hover .scenarios__progress {
+    margin-left: 0;
+}
+
+.scenarios__item:hover .scenarios__name {
+    margin-right: 0;
+}
+
+.scenarios__image-first, 
+.scenarios__image-second, 
+.scenarios__image-third {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 8%;
 }
 
+.scenarios__image-first {
+    background-image: url("scenario-first.jpg");
+}
+
+.scenarios__image-second {
+    background-image: url("scenario-second.jpg");
+}
+
+.scenarios__image-third {
+    background-image: url("scenario-third.jpg");
+}
+
+.scenarios__progress,
+.scenarios__name,
+.scenarios__date {
+    font-size: 20px;
+    text-align: center;
+    line-height: 60%;
+}
+
+.scenarios__progress {
+    padding-top: 40%;
+    margin-left: 15%;
+    transition: margin-left 0.3s;
+}
+
+.scenarios__name {
+    font-size: 25px;
+    margin-right: 15%;
+    transition: margin-right 0.3s;
+}
+
+.scenarios__date {
+    margin-left: 15%;
+    transition: margin-left 0.3s;
+}
+
 .return-to-mainmenu {
-    margin: 1%;
+    margin: 4%;
     width: fit-content;
 }
 
