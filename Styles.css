@@ -64,13 +64,13 @@ button:focus {
 }
 
 .scenarios__item {
-    height: 550px;   /*Костыль*/
+    position: relative;
     width: 30%;
 }
 
 .scenarios__blackout {
     background-color: #202020;
-    position: relative;
+    position: absolute;
     left: 0%;
     top: 0%;
     width: 100%;
@@ -93,26 +93,9 @@ button:focus {
     margin-right: 0;
 }
 
-.scenarios__image-first, 
-.scenarios__image-second, 
-.scenarios__image-third {
+.scenarios__image {
     width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
     border-radius: 8%;
-}
-
-.scenarios__image-first {
-    background-image: url("scenario-first.jpg");
-}
-
-.scenarios__image-second {
-    background-image: url("scenario-second.jpg");
-}
-
-.scenarios__image-third {
-    background-image: url("scenario-third.jpg");
 }
 
 .scenarios__progress,
@@ -141,7 +124,7 @@ button:focus {
 }
 
 .return-to-mainmenu {
-    margin: 4%;
+    margin: 3%;
     width: fit-content;
 }
 

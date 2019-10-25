@@ -37,8 +37,12 @@ function dragElement(elem) {
     pos3 = elmnt.clientX;
     pos4 = elmnt.clientY;
 
-    elem.style.top = (elem.offsetTop - pos2) + "px";
-    elem.style.left = (elem.offsetLeft - pos1) + "px";
+    if (elem.offsetTop - pos2 > -500 && elem.offsetTop - pos2 < 500) {
+      elem.style.top = (elem.offsetTop - pos2) + "px";
+    }
+    if (elem.offsetLeft - pos1 > -500 && elem.offsetLeft - pos1 < 500) {
+      elem.style.left = (elem.offsetLeft - pos1) + "px";
+    }
   }
 
   function closeDragElement() {
