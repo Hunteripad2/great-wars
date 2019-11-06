@@ -15,8 +15,11 @@
                 </div>
                 <img src="logo.png" class="header__logo">
                 <div class="music-buttons">
-                    <button class="music-buttons__play-button">
-                        <img class="music-buttons__play-image" src="play-music-button.png">
+                    <button class="music-buttons__play-button" onclick="playCurrentMusic()" pause>
+                        <img class="music-buttons__play-image" src="play-music-button.png" title="Снять с паузы">
+                    </button>
+                    <button class="music-buttons__nextmusic-button" onclick="playNextMusic()">
+                        <img class="music-buttons__nextmusic-image" src="next-music-button.png" title="Следующая композиция">
                     </button>
                     <button class="music-buttons__musiclist-button" onclick="showMusicMenu()">
                         <img class="music-buttons__musiclist-image" src="music-list-button.png" title="Список композиций">
@@ -31,12 +34,22 @@
         <main>
             <div class="map-background"></div>
             <div class="map">
-                <img src="map.png">
+                <img src="map-political.png">
             </div>
         </main>
         <div id="blackening" onclick="closeTabs()"></div>
-        <div class="music-menu">
-        </div>
+        <ul class="music-menu">
+            <li class="music-menu__item" onclick="chooseThisMusic()">
+                <span class="music-menu__item-name">Музыка 1</span>
+                <audio class="active-music" onended="playNextMusic()"><source src="example1.ogg" type="audio/ogg"></audio>
+                <img src="forbid-music-unckecked.png" class="music-menu__item-forbid" onclick="forbidMusic()" title="Запретить воспроизведение">
+            </li>
+            <li class="music-menu__item" onclick="chooseThisMusic()">
+                <span class="music-menu__item-name">Музыка 2</span>
+                <audio class="inactive-music" onended="playNextMusic()"><source src="example2.ogg" type="audio/ogg"></audio>
+                <img src="forbid-music-unckecked.png" class="music-menu__item-forbid" onclick="forbidMusic()" title="Запретить воспроизведение">
+            </li>
+        </ul>
     </body>
 </html>
 <script src="scripts.js"></script>
