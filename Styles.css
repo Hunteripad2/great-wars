@@ -149,39 +149,6 @@ button:focus {
     z-index: 1;
 }
 
-.turn-counter {
-    position: absolute;
-    left: 42%;
-    width: 16%;
-    line-height: 30px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 0px 0px 90px 90px;
-    background-color: #484848;
-}
-
-.turn-counter__button {
-    width: 35px;
-    vertical-align: middle;
-    margin-left: 3%;
-}
-
-.turn-counter__image {
-    width: 100%;
-}
-
-.map-background {
-    background-image: url("mapmenu-background-image.jpg");
-    background-repeat: no-repeat;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    z-index: -1;
-}
-
 .header__background-left-image {
     background-image: url("header-background-left-image.jpg");
     position: absolute;
@@ -206,6 +173,27 @@ button:focus {
     background-size: cover;
 }
 
+.turn-counter {
+    position: absolute;
+    left: 42%;
+    width: 16%;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 0px 0px 90px 90px;
+    background-color: #484848;
+}
+
+.turn-counter__button {
+    width: 35px;
+    vertical-align: middle;
+    margin-left: 3%;
+}
+
+.turn-counter__image {
+    width: 100%;
+}
+
 .music-buttons {
     display: flex;
     align-items: center;
@@ -227,7 +215,8 @@ button:focus {
 
 .music-buttons__play-image,
 .music-buttons__musiclist-image,
-.music-buttons__nextmusic-image {
+.music-buttons__nextmusic-image,
+.map__event-icon {
     width: 100%;
 }
 
@@ -251,6 +240,8 @@ button:focus {
     background-color: #484848;
     border: 2px solid #2e2e2e;
     border-radius: 100px;
+    display: flex;
+    align-items: center;
 }
 
 .music-menu__item:hover {
@@ -266,10 +257,99 @@ button:focus {
     position: absolute;
     right: 5%;
     height: 80%;
-    top: 8%;
 }
 
 .music-menu__item-forbid:hover {
+    opacity: 0.5;
+}
+
+.map-background {
+    background-image: url("mapmenu-background-image.jpg");
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    z-index: -1;
+}
+
+.map {
+    position: absolute;
+    left: 10%;
+    height: 1080px;
+    width: 1468px;
+    z-index: -1;
+    border: 3px dashed black;
+    border-radius: 5%;
+}
+
+.map__map {
+    position: absolute;
+}
+
+.map__event-button {
+    position: absolute;
+    width: 40px;
+    transition: opacity 1s;
+}
+
+.event {
+    background-color: #2e2e2e;
+    position: fixed;
+    left: 35%;
+    top: 15%;
+    width: 30%;
+    height: 70%;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+    z-index: 100;
+}
+
+.event__name {
+    font-size: 25px;
+    line-height: 40px;
+    margin: 0;
+    text-align: center;
+    background-color: #484848;
+}
+
+.event__image {
+    position: relative;
+    width: 50%;
+    border: 5px solid #484848;
+}
+
+.event__desc {
+    text-align: center;
+}
+
+.event__button-first {
+    bottom: 0;
+    border-top: 1px solid #2e2e2e;
+}
+
+.event__button-second {
+    bottom: 5%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom: 1px solid #2e2e2e;
+}
+
+.event__button-first,
+.event__button-second {
+    position: absolute;
+    font-size: 20px;
+    background-color: #484848;
+    color: white;
+    left: 20%;
+    width: 60%;
+    height: 5%;
+}
+
+.event__button-first:hover,
+.event__button-second:hover {
     opacity: 0.5;
 }
 
@@ -284,20 +364,4 @@ button:focus {
     height: 100%;
     z-index: 10;
     transition: opacity 0.3s;
-}
-
-.map {
-    position: absolute;
-    left: 10%;
-    height: 1080px;
-    width: 1468px;
-    z-index: -1;
-    border: 3px dashed black;
-    border-radius: 5%;
-}
-
-@media screen and (max-width: 1200px) {
-    .header__logo {
-        font-size: 60px;
-    }
 }

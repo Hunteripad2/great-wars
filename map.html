@@ -27,14 +27,14 @@
                 </div>
             </div>
             <div class="turn-counter">
-                <time datetime="1910-1-1" class="turn-counter__date">Январь 1910г.</time>
+                <span class="turn-counter__date"></span>
                 <button class="turn-counter__button"><img class="turn-counter__image" src="turn-button.png"></button>
             </div> 
         </header>
         <main>
             <div class="map-background"></div>
             <div class="map">
-                <img src="map-political.png">
+                <img class="map__map" src="">
             </div>
         </main>
         <div id="blackening" onclick="closeTabs()"></div>
@@ -44,12 +44,14 @@
                 <audio class="active-music" onended="playNextMusic()"><source src="example1.ogg" type="audio/ogg"></audio>
                 <img src="forbid-music-unckecked.png" class="music-menu__item-forbid" onclick="forbidMusic()" title="Запретить воспроизведение">
             </li>
-            <li class="music-menu__item" onclick="chooseThisMusic()">
-                <span class="music-menu__item-name">Музыка 2</span>
-                <audio class="inactive-music" onended="playNextMusic()"><source src="example2.ogg" type="audio/ogg"></audio>
-                <img src="forbid-music-unckecked.png" class="music-menu__item-forbid" onclick="forbidMusic()" title="Запретить воспроизведение">
-            </li>
         </ul>
+        <div class="event">
+            <h1 class="event__name"></h1>
+            <img class="event__image" src="">
+            <p class="event__desc"></p>
+            <button class="event__button-first" onclick="chooseEventOption()"></button>
+            <button class="event__button-second" onclick="chooseEventOption()"></button>
+        </div>
     </body>
 </html>
 <script src="scripts.js"></script>
