@@ -8,6 +8,8 @@ function dragElement(elem) {
   document.querySelector("main").onmousedown = dragMouseDown;
 
   function dragMouseDown(elmnt) {
+    document.querySelector('.map').style.cursor = "grabbing";
+
     elmnt = elmnt || window.event;
     elmnt.preventDefault();
     
@@ -36,6 +38,8 @@ function dragElement(elem) {
   }
 
   function closeDragElement() {
+    document.querySelector('.map').style.cursor = "grab";
+
     document.onmouseup = null;
     document.onmousemove = null;
   }
