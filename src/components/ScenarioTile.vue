@@ -1,6 +1,6 @@
 <template>
   <li class="scenarios__item">
-    <router-link to="pageLink">
+    <router-link :to="pageLink">
       <img :src="imageLink" class="scenarios__image" />
       <div class="scenarios__blackout">
         <h3 class="scenarios__progress"></h3>
@@ -13,21 +13,21 @@
 
 <script>
 export default {
-    name: 'scenario-tile',
-    props: {
-        date: String,
-        title: String,
-        image: String,
-        scenario: String
+  name: 'scenario-tile',
+  props: {
+    date: String,
+    title: String,
+    image: String,
+    scenario: String
+  },
+  computed: {
+    imageLink() {
+      return `../assets/${this.image}.jpg`;
     },
-    computed: {
-        imageLink() {
-            return `../assets/${this.image}.jpg`;
-        },
-        pageLink() {
-            return `/map?${this.scenario}`;
-        }
+    pageLink() {
+      return `/map?${this.scenario}`;
     }
+  }
 }
 </script>
 

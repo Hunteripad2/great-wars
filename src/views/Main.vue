@@ -7,7 +7,7 @@
           <router-link to="/scenarios" class="menu__option">Начать</router-link>
         </li>
         <li class="menu__item">
-          <button class="menu__option" onclick="showResourceMenu()">Ресурсы</button>
+          <button class="menu__option" @click="showResourceMenu">Ресурсы</button>
         </li>
         <li class="menu__item">
           <button class="menu__option" @click="showSettingsMenu">Настройки</button>
@@ -92,6 +92,17 @@ export default {
           localStorage.removeItem(`scenarioThirdMusicList`);
         }
       } else alert("Данные не найдены");
+    },
+    showResourceMenu() {
+      document.querySelector('.resource-menu').style.transform = "translateY(0%)";
+      document.querySelector('.blackening').style.opacity = "0.8";
+      document.querySelector('.blackening').style.transform = "translate(0%)";
+    },
+    chooseThisCategory() {
+      if (document.querySelector('.resource-menu__category-item_active')) {
+        document.querySelector('.resource-menu__category-item_active').className = "resource-menu__category-item_inactive";
+      }
+      event.target.parentNode.className = "resource-menu__category-item_active";
     }
   }
 };
