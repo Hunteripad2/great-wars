@@ -5,7 +5,7 @@ const allData = {
     {
       storyLine: "Historical",
       date: "Январь 1910г.",
-      map: "map.png",
+      map: "map",
       events: [
       ]
     }
@@ -15,7 +15,7 @@ const allData = {
     {
       storyLine: "Historical",
       date: "Январь 1924г.",
-      map: "map.png",
+      map: "map",
       events: [
       ]
     },
@@ -25,7 +25,7 @@ const allData = {
     {
       storyLine: "Historical",
       date: "Январь 1934г.",
-      map: "map-1934-01-historical.png",
+      map: "map-1934-01-historical",
       defaultMusic: [
         {
           name: "Музыка 1",
@@ -39,7 +39,7 @@ const allData = {
           image: "scenario-second.jpg",
           option1: "Первая опция",
           type: "info",
-          icon: "red-circle.png",
+          icon: "red-circle",
           positionX: "450px",
           positionY: "550px",
         },
@@ -49,7 +49,7 @@ const allData = {
           image: "scenario-second.jpg",
           option1: "Первая опция",
           type: "info",
-          icon: "red-circle.png",
+          icon: "red-circle",
           positionX: "600px",
           positionY: "600px",
         },
@@ -60,7 +60,7 @@ const allData = {
           option1: "Первая опция",
           option2: "Добавить в список",
           type: "music",
-          icon: "red-circle.png",
+          icon: "red-circle",
           positionX: "380px",
           positionY: "450px",
           musicUnlockName: "Музыка 2",
@@ -79,7 +79,7 @@ const allData = {
           image: "scenario-second.jpg",
           option1: "Первая опция",
           type: "info",
-          icon: "red-circle.png",
+          icon: "red-circle",
           positionX: "600px",
           positionY: "550px",
         },
@@ -96,7 +96,7 @@ const allData = {
           image: "scenario-second.jpg",
           option1: "Первая опция",
           type: "info",
-          icon: "red-circle.png",
+          icon: "red-circle",
           positionX: "600px",
           positionY: "550px",
         },

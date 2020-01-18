@@ -7,7 +7,7 @@
       <ScenarioTile title="Вторая Мировая Война" date="1934 - 1945" image="scenario-third" scenario="scenarioThird" />
     </ul>
     <div class="return-to-mainmenu">
-      <router-link to="/main" class="return-to-mainmenu__link">Главное меню</router-link>
+      <router-link to="/" class="return-to-mainmenu__link">Главное меню</router-link>
     </div>
   </main>
 </template>
@@ -17,7 +17,7 @@ import ScenarioTile from "@/components/ScenarioTile.vue";
 import allData from "@/utils/allData.js";
 
 export default {
-  name: "scenarios",
+  name: "scenarios-page",
   components: {
     ScenarioTile
   },
@@ -34,10 +34,8 @@ export default {
       progressBars[2].innerHTML = Math.round(100 / allData.scenarioThird.length * thirdScenarioProgress * 100) / 100 + "%";
     }
   },
-  /*beforeCreate(){
-    this.setProgress;
-  },*/
+  mounted(){
+    this.setProgress();
+  },
 };
-
-//document.addEventListener('DOMContentLoaded', setProgress);
 </script>

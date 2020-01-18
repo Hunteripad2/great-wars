@@ -58,7 +58,7 @@
 import closeTabs from "@/utils/closeTabs.js";
 
 export default {
-  name: "main-menu",
+  name: "main-page",
   methods: {
     closeTabs,
     showSettingsMenu() {
