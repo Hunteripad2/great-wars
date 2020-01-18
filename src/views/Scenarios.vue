@@ -2,9 +2,9 @@
   <main>
     <h1 class="choose-scenario">Выберите сценарий</h1>
     <ul class="scenarios">
-      <scenarioTile title="Первая Мировая Война" date="1910 - 1923" image="scenario-first" scenario="scenarioFirst" />
-      <scenarioTile title="Межвоенный Период" date="1924 - 1933" image="scenario-second" scenario="scenarioSecond" />
-      <scenarioTile title="Вторая Мировая Война" date="1934 - 1945" image="scenario-third" scenario="scenarioThird" />
+      <ScenarioTile title="Первая Мировая Война" date="1910 - 1923" image="scenario-first" scenario="scenarioFirst" />
+      <ScenarioTile title="Межвоенный Период" date="1924 - 1933" image="scenario-second" scenario="scenarioSecond" />
+      <ScenarioTile title="Вторая Мировая Война" date="1934 - 1945" image="scenario-third" scenario="scenarioThird" />
     </ul>
     <div class="return-to-mainmenu">
       <router-link to="/main" class="return-to-mainmenu__link">Главное меню</router-link>
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import scenarioTile from "@/components/scenarioTile.vue";
+import ScenarioTile from "@/components/ScenarioTile.vue";
 import allData from "@/utils/allData.js";
 
 export default {
   name: "scenarios",
   components: {
-    scenarioTile
+    ScenarioTile
   },
   methods: {
     setProgress() {
