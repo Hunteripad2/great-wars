@@ -42,7 +42,7 @@
     <main>
       <div class="map-background"></div>
       <div class="map">
-        <Map src="${choosenPeriod.map}" />
+        <MapImage />
       </div>
     </main>
     <div class="blackening" @click="closeTabs"></div>
@@ -60,14 +60,18 @@
 <script>
 import closeTabs from "@/utils/closeTabs.js";
 import allData from "@/utils/allData.js";
-import Map from "@/components/Map.vue";
-import EventIcon from "@/components/EventIcon.vue";
+import MapImage from "@/components/MapImage.vue";
+import {END_TURN} from '@/store';
+import { mapActions } from 'vuex'
+// import EventIcon from "@/components/EventIcon.vue";
 
 const currentScenario = document.URL.slice(document.URL.indexOf("?") + 1);
 
 export default {
   name: "map-page",
-  components: [EventIcon, Map],
+  components: {
+    MapImage
+  },
   methods: {
     closeTabs,
     choosePeriod() {
@@ -264,66 +268,43 @@ export default {
         document.onmouseup = null;
         document.onmousemove = null;
       }
-    }
-  },
-  endTurn() {
-    const currentPeriodIndex = Number(
-      localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)
-    );
-    const currentStoryline = localStorage.getItem(
-      `${currentScenario}CurrentStoryline`
-    );
-    const currentEventList = document.querySelectorAll(".map__event-button");
-
-    for (
-      let i = currentPeriodIndex + 1;
-      i < allData[currentScenario].length;
-      i += 1
-    ) {
-      if (currentStoryline === allData[currentScenario][i].storyLine) {
-        localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, `${i}`);
-        for (let evnt of currentEventList) {
-          evnt.remove();
-        }
-        this.choosePeriod();
-        break;
-      }
-    }
-    //else endscreen
+    },
+    ...mapActions({
+      endTurn: END_TURN
+    })
   },
   mounted() {
-    this.dragElement(document.querySelector(".map"));
-    this.choosePeriod();
-    this.setMusicList();
-    this.setInterval(() => {
-      let events = document.querySelectorAll(".map__event-button");
-
-      for (let evnt of events) {
-        if (getComputedStyle(evnt).opacity === "1") {
-          evnt.style.opacity = "0.2";
-        } else if (!evnt.hasAttribute("checked")) {
-          evnt.style.opacity = "1";
-        }
-      }
-    }, 500);
+    // this.dragElement(document.querySelector(".map"));
+    // this.choosePeriod();
+    // this.setMusicList();
+    // this.setInterval(() => {
+    //   let events = document.querySelectorAll(".map__event-button");
+    //   for (let evnt of events) {
+    //     if (getComputedStyle(evnt).opacity === "1") {
+    //       evnt.style.opacity = "0.2";
+    //     } else if (!evnt.hasAttribute("checked")) {
+    //       evnt.style.opacity = "1";
+    //     }
+    //   }
+    // }, 500);
   },
   created() {
-    if (!localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)) {
-      localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, "0");
-    }
-    if (!localStorage.getItem(`${currentScenario}CurrentStoryline`)) {
-      localStorage.setItem(`${currentScenario}CurrentStoryline`, "Historical");
-    }
-    if (!localStorage.getItem(`${currentScenario}MusicList`)) {
-      localStorage.setItem(
-        `${currentScenario}MusicList`,
-        JSON.stringify(
-          allData[currentScenario][
-            localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)
-          ].defaultMusic
-        )
-      );
-    }
+    // if (!localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)) {
+    //   localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, "0");
+    // }
+    // if (!localStorage.getItem(`${currentScenario}CurrentStoryline`)) {
+    //   localStorage.setItem(`${currentScenario}CurrentStoryline`, "Historical");
+    // }
+    // if (!localStorage.getItem(`${currentScenario}MusicList`)) {
+    //   localStorage.setItem(
+    //     `${currentScenario}MusicList`,
+    //     JSON.stringify(
+    //       allData[currentScenario][
+    //         localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)
+    //       ].defaultMusic
+    //     )
+    //   );
+    // }
   }
 };
 /*function showEventWindow(name, desc, image, option1, option2, type, musicName, musicSrc) {
