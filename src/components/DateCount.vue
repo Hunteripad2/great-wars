@@ -1,14 +1,14 @@
 <template>
-  <img class="map__map" :src="require('@/assets/' + currentMap + '.png')">
+  <span class="turn-counter__date">{{currentDate}}</span>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 export default {
-  name: 'map-image',
+  name: 'date-count',
   computed: mapState([
-    'currentMap'
+    'currentDate'
   ]),
 }
 </script>

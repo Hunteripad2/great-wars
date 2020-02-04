@@ -3,7 +3,7 @@
 const allData = {
   scenarioFirst: [
     {
-      storyLine: "Historical",
+      storyLine: ["Historical"],
       date: "Январь 1910г.",
       map: "map",
       events: [
@@ -13,7 +13,7 @@ const allData = {
 
   scenarioSecond: [
     {
-      storyLine: "Historical",
+      storyLine: ["Historical"],
       date: "Январь 1924г.",
       map: "map",
       events: [
@@ -23,7 +23,7 @@ const allData = {
 
   scenarioThird: [
     {
-      storyLine: "Historical",
+      storyLine: ["Historical"],
       date: "Январь 1934г.",
       map: "map-1934-01-historical",
       defaultMusic: [
@@ -69,7 +69,7 @@ const allData = {
       ]
     },
     {
-      storyLine: "Test",
+      storyLine: ["Historical", "Test"],
       date: "Февраль 1934г.",
       map: "map-1934-01-historical.png",
       events: [
@@ -86,7 +86,7 @@ const allData = {
       ]
     },
     {
-      storyLine: "Historical",
+      storyLine: ["Historical"],
       date: "Февраль 1934г.",
       map: "map-1934-01-historical.png",
       events: [

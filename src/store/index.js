@@ -1,49 +1,34 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import allData from "@/utils/allData.js";
 
 Vue.use(Vuex);
 
 export const CHANGE_MAP = "CHANGE_MAP";
+export const CHANGE_DATE = "CHANGE_DATE";
 
-export const END_TURN = "END_TURN";
+export const CHOOSE_PERIOD = "CHOOSE_PERIOD";
 
 export default new Vuex.Store({
   state: {
-    currentMap: 'map-1934-01-historical'
+    currentMap: "map",
+    currentDate: "---",
   },
   mutations: {
     [CHANGE_MAP]: (state, payload) => {
       state.currentMap = payload.newMap;
-    }
+    },
+    [CHANGE_DATE]: (state, payload) => {
+      state.currentDate = payload.newDate;
+    },
   },
   actions: {
-    [END_TURN]: (context) => {
-      // const currentPeriodIndex = Number(
-      //   localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)
-      // );
+    [CHOOSE_PERIOD]: (context) => {
+      const currentScenario = document.URL.slice(document.URL.indexOf("?") + 1);
+      const choosenPeriod = allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)];
 
-      // const currentStoryline = localStorage.getItem(
-      //   `${currentScenario}CurrentStoryline`
-      // );
-
-      context.commit(CHANGE_MAP, { newMap: 'map' });
-
-      // const currentEventList = document.querySelectorAll(".map__event-button");
-
-      // for (
-      //   let i = currentPeriodIndex + 1;
-      //   i < allData[currentScenario].length;
-      //   i += 1
-      // ) {
-      //   if (currentStoryline === allData[currentScenario][i].storyLine) {
-      //     localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, `${i}`);
-      //     for (let evnt of currentEventList) {
-      //       evnt.remove();
-      //     }
-      //     this.choosePeriod();
-      //     break;
-      //   }
-      // }
+      context.commit(CHANGE_MAP, { newMap: choosenPeriod.map });
+      context.commit(CHANGE_DATE, { newDate: choosenPeriod.date });
     }
   },
   modules: {}

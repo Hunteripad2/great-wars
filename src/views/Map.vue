@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="turn-counter">
-        <span class="turn-counter__date"></span>
+        <DateCount />
         <button class="turn-counter__button" @click="endTurn">
           <img class="turn-counter__image" src="../assets/turn-button.png" />
         </button>
@@ -41,8 +41,9 @@
     </header>
     <main>
       <div class="map-background"></div>
-      <div class="map">
+      <div class="map" >
         <MapImage />
+        <EventIcons />
       </div>
     </main>
     <div class="blackening" @click="closeTabs"></div>
@@ -61,41 +62,22 @@
 import closeTabs from "@/utils/closeTabs.js";
 import allData from "@/utils/allData.js";
 import MapImage from "@/components/MapImage.vue";
-import {END_TURN} from '@/store';
+import EventIcons from "@/components/EventIcons.vue";
+import DateCount from "@/components/DateCount.vue";
+import { CHOOSE_PERIOD } from '@/store';
 import { mapActions } from 'vuex'
-// import EventIcon from "@/components/EventIcon.vue";
 
 const currentScenario = document.URL.slice(document.URL.indexOf("?") + 1);
 
 export default {
   name: "map-page",
   components: {
-    MapImage
+    MapImage,
+    DateCount,
+    EventIcons,
   },
   methods: {
     closeTabs,
-    choosePeriod() {
-      const choosenPeriod =
-        allData[currentScenario][
-          localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)
-        ];
-
-      document.querySelector(
-        ".map"
-      ).innerHTML = `<Map src="${choosenPeriod.map}" />`;
-      document.querySelector(".turn-counter__date").innerHTML =
-        choosenPeriod.date;
-
-      let eventList = choosenPeriod.events;
-      for (let i = 0; i < eventList.length; i += 1) {
-        document
-          .querySelector(".map")
-          .insertAdjacentHTML(
-            "beforeend",
-            `<EventIcon left="${eventList[i].positionX}" top="${eventList[i].positionY}" image="${eventList[i].icon}" />`
-          );
-      }
-    },
     setMusicList() {
       const musicList = JSON.parse(
         localStorage.getItem(`${currentScenario}MusicList`)
@@ -230,6 +212,7 @@ export default {
         pos2 = 0,
         pos3 = 0,
         pos4 = 0;
+
       document.querySelector("main").onmousedown = dragMouseDown;
 
       function dragMouseDown(elmnt) {
@@ -269,13 +252,32 @@ export default {
         document.onmousemove = null;
       }
     },
+    endTurn() {
+      // const currentEventList = document.querySelectorAll(".map__event-button");
+
+      // for (
+      //   let i = currentPeriodIndex + 1;
+      //   i < allData[currentScenario].length;
+      //   i += 1
+      // ) {
+      //   if (currentStoryline === allData[currentScenario][i].storyLine) {
+      //     localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, `${i}`);
+      //     for (let evnt of currentEventList) {
+      //       evnt.remove();
+      //     }
+      //     this.choosePeriod();
+      //     break;
+      //   }
+      // }
+      console.log("click");
+    },
     ...mapActions({
-      endTurn: END_TURN
+      choosePeriod: CHOOSE_PERIOD,
     })
   },
   mounted() {
     // this.dragElement(document.querySelector(".map"));
-    // this.choosePeriod();
+    this.choosePeriod();
     // this.setMusicList();
     // this.setInterval(() => {
     //   let events = document.querySelectorAll(".map__event-button");
@@ -289,22 +291,15 @@ export default {
     // }, 500);
   },
   created() {
-    // if (!localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)) {
-    //   localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, "0");
-    // }
-    // if (!localStorage.getItem(`${currentScenario}CurrentStoryline`)) {
-    //   localStorage.setItem(`${currentScenario}CurrentStoryline`, "Historical");
-    // }
-    // if (!localStorage.getItem(`${currentScenario}MusicList`)) {
-    //   localStorage.setItem(
-    //     `${currentScenario}MusicList`,
-    //     JSON.stringify(
-    //       allData[currentScenario][
-    //         localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)
-    //       ].defaultMusic
-    //     )
-    //   );
-    // }
+    if (!localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)) {
+      localStorage.setItem(`${currentScenario}CurrentPeriodIndex`, "0");
+    }
+    if (!localStorage.getItem(`${currentScenario}CurrentStoryline`)) {
+      localStorage.setItem(`${currentScenario}CurrentStoryline`, "Historical");
+    }
+    if (!localStorage.getItem(`${currentScenario}MusicList`)) {
+      localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
+    }
   }
 };
 /*function showEventWindow(name, desc, image, option1, option2, type, musicName, musicSrc) {
