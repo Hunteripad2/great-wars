@@ -1,44 +1,22 @@
 <template>
-  <div id="events">
-    <event-icon v-for="event in eventList" v-bind:key="event.name" :event="event" />
+  <div v-if="currentEvents">
+    <button :style="style" class="map__event-button" @click="onClick" v-for="event in currentEvents" v-bind:key="event.name">
+      <img :src="require('@/assets/' + event.icon + '.png')" class="map__event-icon" />
+    </button>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import scenariosData from "@/utils/scenariosData.js";
-
-export const eventData = new Vue({
-  el: '#events',
-  store,
-  computed: {
-    currentScenario() {
-      return this.$store.state.currentScenario
-    }
-  },
-  data: {
-    eventList: scenariosData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].events
-  }
-})
-
-Vue.component('event-icon', {
-  template: `  
-    <button :style="style" class="map__event-button" @click="onClick">
-      <img :src="require('@/assets/' + event.image + '.png')" class="map__event-icon" />
-    </button>
-  `,
-  props: {
-    event: Object
-  }
-});
-
 export default {
   name: "event-icons",
-  //computed: {
-  //  style() {
-  //    return `left: ${event.left}; top: ${event.top}`;
-  //  }
-  //},
+  computed: {
+    currentEvents() {
+      return this.$store.getters.currentEvents
+    },
+    style(event) { 
+      return `left: ${event.positionX}; top: ${event.positionY}`;
+    }
+  },
   methods: {
     onClick() {
       console.log("click");

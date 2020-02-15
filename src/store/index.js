@@ -4,21 +4,15 @@ import scenariosData from "@/utils/scenariosData.js";
 
 Vue.use(Vuex);
 
-export const CHANGE_SCENARIO = "CHANGE_SCENARIO";
-export const CHOOSE_SCENARIO = "CHOOSE_SCENARIO";
-export const CHOOSE_PERIOD = "CHOOSE_PERIOD";
 export const INIT_STATE = "INIT_STATE";
 
 export default new Vuex.Store({
   state: {
     currentScenarioName: null,
     currentPeriod: null,
-    scenariosData
+    scenariosData,
   },
   mutations: {
-    [CHANGE_SCENARIO]: (state, payload) => {
-      state.currentScenarioName = payload.newScenario;
-    },
     [INIT_STATE]: (state, payload) => {
       state.currentPeriod = payload.newPeriod;
       state.currentScenarioName = payload.newScenario;
@@ -30,7 +24,10 @@ export default new Vuex.Store({
     },
     currentDate: state => {
       return state.currentPeriod ? state.currentPeriod.date : null;
-    }
+    },
+    currentEvents: state => {
+      return state.currentPeriod ? state.currentPeriod.events : null;
+    },
   },
   actions: {
     [INIT_STATE]: (context) => {
