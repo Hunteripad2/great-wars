@@ -6,7 +6,7 @@
 
 <script>
 import Vue from "vue";
-import allData from "@/utils/allData.js";
+import scenariosData from "@/utils/scenariosData.js";
 
 export const eventData = new Vue({
   el: '#events',
@@ -17,7 +17,7 @@ export const eventData = new Vue({
     }
   },
   data: {
-    eventList: allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].events
+    eventList: scenariosData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].events
   }
 })
 

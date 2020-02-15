@@ -1,34 +1,45 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import allData from "@/utils/allData.js";
+import scenariosData from "@/utils/scenariosData.js";
 
 Vue.use(Vuex);
 
 export const CHANGE_SCENARIO = "CHANGE_SCENARIO";
+export const CHOOSE_SCENARIO = "CHOOSE_SCENARIO";
 export const CHOOSE_PERIOD = "CHOOSE_PERIOD";
+export const INIT_STATE = "INIT_STATE";
 
 export default new Vuex.Store({
   state: {
-    currentScenario: "---",
+    currentScenarioName: null,
+    currentPeriod: null,
+    scenariosData
   },
   mutations: {
     [CHANGE_SCENARIO]: (state, payload) => {
-      state.currentScenario = payload.newScenario;
+      state.currentScenarioName = payload.newScenario;
     },
+    [INIT_STATE]: (state, payload) => {
+      state.currentPeriod = payload.newPeriod;
+      state.currentScenarioName = payload.newScenario;
+    }
   },
   getters: {
     currentMap: state => {
-      const currentPeriodIndex = localStorage.getItem(`${state.currentScenario}CurrentPeriodIndex`)
-      return allData[state.currentScenario][currentPeriodIndex].map;
+      return state.currentPeriod ? state.currentPeriod.map : null;
     },
     currentDate: state => {
-      const currentPeriodIndex = localStorage.getItem(`${state.currentScenario}CurrentPeriodIndex`)
-      return allData[state.currentScenario][currentPeriodIndex].date;
+      return state.currentPeriod ? state.currentPeriod.date : null;
     }
   },
   actions: {
-    [CHOOSE_PERIOD]: (context) => {
-      context.commit(CHANGE_SCENARIO, { newScenario: document.URL.slice(document.URL.indexOf("?") + 1) });
+    [INIT_STATE]: (context) => {
+      const scenarioName = document.URL.slice(document.URL.indexOf("?") + 1);
+      const currentPeriodIndex = localStorage.getItem(`${scenarioName}CurrentPeriodIndex`);
+
+      if (currentPeriodIndex) {
+        context.commit(INIT_STATE, { newPeriod: context.state.scenariosData[scenarioName][currentPeriodIndex], newScenario: scenarioName });
+      }
     }
   },
   modules: {}

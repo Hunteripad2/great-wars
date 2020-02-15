@@ -1,6 +1,6 @@
 "use strict";
 
-const allData = {
+const scenariosData = {
   scenarioFirst: [
     {
       storyLine: ["Historical"],
@@ -105,4 +105,4 @@ const allData = {
   ],
 }
 
-export default allData;
+export default scenariosData;

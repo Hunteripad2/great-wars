@@ -1,5 +1,5 @@
 <template>
-  <span class="turn-counter__date">{{currentDate}}</span>
+  <span v-if="currentDate" class="turn-counter__date">{{currentDate}}</span>
 </template>
 
 <script>

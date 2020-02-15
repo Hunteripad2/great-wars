@@ -14,7 +14,7 @@
 
 <script>
 import ScenarioTile from "@/components/ScenarioTile.vue";
-import allData from "@/utils/allData.js";
+import scenariosData from "@/utils/scenariosData.js";
 
 export default {
   name: "scenarios-page",
@@ -29,9 +29,9 @@ export default {
     
       const progressBars = document.querySelectorAll('.scenarios__progress');
     
-      progressBars[0].innerHTML = Math.round(100 / allData.scenarioFirst.length * firstScenarioProgress * 100) / 100 + "%";
-      progressBars[1].innerHTML = Math.round(100 / allData.scenarioSecond.length * secondScenarioProgress * 100) / 100 + "%";
-      progressBars[2].innerHTML = Math.round(100 / allData.scenarioThird.length * thirdScenarioProgress * 100) / 100 + "%";
+      progressBars[0].innerHTML = Math.round(100 / scenariosData.scenarioFirst.length * firstScenarioProgress * 100) / 100 + "%";
+      progressBars[1].innerHTML = Math.round(100 / scenariosData.scenarioSecond.length * secondScenarioProgress * 100) / 100 + "%";
+      progressBars[2].innerHTML = Math.round(100 / scenariosData.scenarioThird.length * thirdScenarioProgress * 100) / 100 + "%";
     }
   },
   mounted(){

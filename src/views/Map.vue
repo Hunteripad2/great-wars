@@ -43,7 +43,7 @@
       <div class="map-background"></div>
       <div class="map" >
         <MapImage />
-        <!--<EventIcons />-->
+        <!-- <EventIcons /> -->
       </div>
     </main>
     <div class="blackening" @click="closeTabs"></div>
@@ -62,9 +62,9 @@
 import closeTabs from "@/utils/closeTabs.js";
 //import allData from "@/utils/allData.js";
 import MapImage from "@/components/MapImage.vue";
-//import EventIcons from "@/components/EventIcons.vue";
+// import EventIcons from "@/components/EventIcons.vue";
 import DateCount from "@/components/DateCount.vue";
-import { CHOOSE_PERIOD } from '@/store';
+import { INIT_STATE } from '@/store';
 import { mapActions } from 'vuex'
 
 export default {
@@ -270,12 +270,12 @@ export default {
       console.log("click");
     },
     ...mapActions({
-      choosePeriod: CHOOSE_PERIOD,
+      initState: INIT_STATE
     })
   },
   mounted() {
     // this.dragElement(document.querySelector(".map"));
-    this.choosePeriod();
+    this.initState();
     // this.setMusicList();
     // this.setInterval(() => {
     //   let events = document.querySelectorAll(".map__event-button");
