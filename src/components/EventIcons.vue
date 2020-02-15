@@ -31,11 +31,11 @@ Vue.component('event-icon', {
 
 export default {
   name: "event-icons",
-  computed: {
-    style() {
-      return `left: ${event.left}; top: ${event.top}`;
-    }
-  },
+  //computed: {
+  //  style() {
+  //    return `left: ${event.left}; top: ${event.top}`;
+  //  }
+  //},
   methods: {
     onClick() {
       console.log("click");

@@ -32,22 +32,13 @@
     <div class="settings-menu">
       <ul class="settings-menu__progress-list">
         <li class="settings-menu__progress-item">
-          <button
-            class="settings-menu__progress-button"
-            onclick="resetProgressFirst()"
-          >Сбросить прогресс первого сценария</button>
+          <button class="settings-menu__progress-button" @click="resetProgressFirst">Сбросить прогресс первого сценария</button>
         </li>
         <li class="settings-menu__progress-item">
-          <button
-            class="settings-menu__progress-button"
-            onclick="resetProgressSecond()"
-          >Сбросить прогресс второго сценария</button>
+          <button class="settings-menu__progress-button" @click="resetProgressSecond">Сбросить прогресс второго сценария</button>
         </li>
         <li class="settings-menu__progress-item">
-          <button
-            class="settings-menu__progress-button"
-            onclick="resetProgressThird()"
-          >Сбросить прогресс третьего сценария</button>
+          <button class="settings-menu__progress-button" @click="resetProgressThird">Сбросить прогресс третьего сценария</button>
         </li>
       </ul>
     </div>
@@ -67,31 +58,28 @@ export default {
       document.querySelector(".blackening").style.transform = "translate(0%)";
     },
     resetProgressFirst() {
-      if (localStorage.getItem(`scenarioFirstCurrentPeriodIndex`)) {
-        if (confirm("Все связанные с первым сценарием данные будут удалены")) {
-          localStorage.removeItem(`scenarioFirstCurrentPeriodIndex`);
-          localStorage.removeItem(`scenarioFirstCurrentStoryline`);
-          localStorage.removeItem(`scenarioFirstMusicList`);
-        }
-      } else alert("Данные не найдены");
+      if (confirm("Все связанные с первым сценарием данные будут удалены")) {
+        localStorage.setItem(`scenarioFirstCurrentPeriodIndex`, "0");
+        localStorage.setItem(`scenarioFirstCurrentStoryline`, "Historical");
+        //localStorage.removeItem(`scenarioFirstMusicList`);
+        alert("Прогресс первого сценария сброшен");
+      }
     },
     resetProgressSecond() {
-      if (localStorage.getItem(`scenarioSecondCurrentPeriodIndex`)) {
-        if (confirm("Все связанные со вторым сценарием данные будут удалены")) {
-          localStorage.removeItem(`scenarioSecondCurrentPeriodIndex`);
-          localStorage.removeItem(`scenarioSecondCurrentStoryline`);
-          localStorage.removeItem(`scenarioSecondMusicList`);
-        }
-      } else alert("Данные не найдены");
+      if (confirm("Все связанные со вторым сценарием данные будут удалены")) {
+        localStorage.setItem(`scenarioSecondCurrentPeriodIndex`, "0");
+        localStorage.setItem(`scenarioSecondCurrentStoryline`, "Historical");
+        //localStorage.removeItem(`scenarioSecondMusicList`);
+        alert("Прогресс второго сценария сброшен");
+      }
     },
     resetProgressThird() {
-      if (localStorage.getItem(`scenarioThirdCurrentPeriodIndex`)) {
-        if (confirm("Все связанные с третьим сценарием данные будут удалены")) {
-          localStorage.removeItem(`scenarioThirdCurrentPeriodIndex`);
-          localStorage.removeItem(`scenarioThirdCurrentStoryline`);
-          localStorage.removeItem(`scenarioThirdMusicList`);
-        }
-      } else alert("Данные не найдены");
+      if (confirm("Все связанные с третьим сценарием данные будут удалены")) {
+        localStorage.setItem(`scenarioThirdCurrentPeriodIndex`, "0");
+        localStorage.setItem(`scenarioThirdCurrentStoryline`, "Historical");
+        //localStorage.removeItem(`scenarioThirdMusicList`);
+        alert("Прогресс третьего сценария сброшен");
+      }
     },
     showResourceMenu() {
       document.querySelector('.resource-menu').style.transform = "translateY(0%)";
@@ -103,6 +91,23 @@ export default {
         document.querySelector('.resource-menu__category-item_active').className = "resource-menu__category-item_inactive";
       }
       event.target.parentNode.className = "resource-menu__category-item_active";
+    }
+  },
+  created() {
+    if (!localStorage.getItem(`scenarioFirstCurrentPeriodIndex`)) {
+      localStorage.setItem(`scenarioFirstCurrentPeriodIndex`, "0");
+      localStorage.setItem(`scenarioFirstCurrentStoryline`, "Historical");
+      //localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
+    }
+    if (!localStorage.getItem(`scenarioSecondCurrentPeriodIndex`)) {
+      localStorage.setItem(`scenarioSecondCurrentPeriodIndex`, "0");
+      localStorage.setItem(`scenarioSecondCurrentStoryline`, "Historical");
+      //localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
+    }
+    if (!localStorage.getItem(`scenarioThirdCurrentPeriodIndex`)) {
+      localStorage.setItem(`scenarioThirdCurrentPeriodIndex`, "0");
+      localStorage.setItem(`scenarioThirdCurrentStoryline`, "Historical");
+      //localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
     }
   }
 };
