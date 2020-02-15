@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'map-image',
-  computed: mapState([
-    'currentMap'
-  ]),
+  computed: {
+    currentMap() {
+      return this.$store.getters.currentMap
+    }
+  }
 }
 </script>
 

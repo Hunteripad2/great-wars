@@ -67,8 +67,6 @@ import DateCount from "@/components/DateCount.vue";
 import { CHOOSE_PERIOD } from '@/store';
 import { mapActions } from 'vuex'
 
-//const currentScenario = document.URL.slice(document.URL.indexOf("?") + 1);
-
 export default {
   name: "map-page",
   components: {

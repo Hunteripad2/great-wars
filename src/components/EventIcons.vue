@@ -8,13 +8,16 @@
 import Vue from "vue";
 import allData from "@/utils/allData.js";
 
-const currentScenario = document.URL.slice(document.URL.indexOf("?") + 1);
-const choosenPeriod = allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)];
-
 export const eventData = new Vue({
   el: '#events',
+  store,
+  computed: {
+    currentScenario() {
+      return this.$store.state.currentScenario
+    }
+  },
   data: {
-    eventList: choosenPeriod.events
+    eventList: allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].events
   }
 })
 

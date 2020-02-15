@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'date-count',
-  computed: mapState([
-    'currentDate'
-  ]),
+  computed: {
+    currentDate() {
+      return this.$store.getters.currentDate
+    }
+  }
 }
 </script>
 
