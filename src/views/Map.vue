@@ -7,53 +7,43 @@
         <div class="header__return-to-main-menu">
           <router-link to="/" class="return-to-mainmenu__link">Главное меню</router-link>
         </div>
-        <img src="../assets/logo.png" class="header__logo" />
+        <img src="../assets/logo.png" class="header__logo">
         <div class="music-buttons">
           <button class="music-buttons__play-button" @click="playCurrentMusic" pause>
-            <img
-              class="music-buttons__play-image"
-              src="../assets/play-music-button.png"
-              title="Снять с паузы"
-            />
+            <img class="music-buttons__play-image" src="../assets/play-music-button.png" title="Снять с паузы">
           </button>
           <button class="music-buttons__nextmusic-button" @click="playNextMusic">
-            <img
-              class="music-buttons__nextmusic-image"
-              src="../assets/next-music-button.png"
-              title="Следующая композиция"
-            />
+            <img class="music-buttons__nextmusic-image" src="../assets/next-music-button.png" title="Следующая композиция">
           </button>
           <button class="music-buttons__musiclist-button" @click="showMusicMenu">
-            <img
-              class="music-buttons__musiclist-image"
-              src="../assets/music-list-button.png"
-              title="Список композиций"
-            />
+            <img class="music-buttons__musiclist-image" src="../assets/music-list-button.png" title="Список композиций">
           </button>
         </div>
       </div>
       <div class="turn-counter">
         <DateCount />
         <button class="turn-counter__button" @click="endTurn">
-          <img class="turn-counter__image" src="../assets/turn-button.png" />
+          <img class="turn-counter__image" src="../assets/turn-button.png">
         </button>
       </div>
     </header>
     <main>
       <div class="map-background"></div>
-      <div class="map" >
+      <div class="map">
         <MapImage />
         <EventIcons />
       </div>
     </main>
     <div class="blackening" @click="closeTabs"></div>
-    <ul class="music-menu"></ul>
+    <div class="music-menu">
+      <MusicList />
+    </div>
     <div class="event">
       <h1 class="event__name"></h1>
-      <img class="event__image" src />
+      <img class="event__image" src>
       <p class="event__desc"></p>
-      <button class="event__button-first" @click="chooseEventOption"></button>
-      <button class="event__button-second" @click="chooseEventOption"></button>
+      <button class="event__button-first" @click="chooseEventOption" />
+      <button class="event__button-second" @click="chooseEventOption" />
     </div>
   </div>
 </template>
@@ -62,6 +52,7 @@
 import closeTabs from "@/utils/closeTabs.js";
 import MapImage from "@/components/MapImage.vue";
 import EventIcons from "@/components/EventIcons.vue";
+import MusicList from "@/components/MusicList.vue";
 import DateCount from "@/components/DateCount.vue";
 import { INIT_STATE } from '@/store';
 import { mapActions } from 'vuex'
@@ -72,68 +63,14 @@ export default {
     MapImage,
     DateCount,
     EventIcons,
+    MusicList,
   },
   methods: {
     closeTabs,
-    setMusicList() {
-      //  const musicList = JSON.parse(
-      //    localStorage.getItem(`${currentScenario}MusicList`)
-      //  );
-      //
-      //  for (let music of musicList) {
-      //    document
-      //      .querySelector(".music-menu")
-      //      .insertAdjacentHTML(
-      //        "beforeend",
-      //        `<li class="music-menu__item" onclick="chooseThisMusic()"><span class="music-menu__item-name">${music.name}</span><audio class="inactive-music" //onended="playNextMusic()"><source src="${music.src}" type="audio/ogg"></audio><img src="forbid-music-unckecked.png" class="music-menu__item-forbid" //onclick="forbidMusic()" title="Запретить воспроизведение"></li>`
-      //      );
-      //  }
-      //
-      //  document.querySelector(".inactive-music").className = "active-music";
-    },
     showMusicMenu() {
       document.querySelector(".music-menu").style.transform = "translate(0%)";
       document.querySelector(".blackening").style.opacity = "0.8";
       document.querySelector(".blackening").style.transform = "translate(0%)";
-    },
-    forbidMusic() {
-      //  if (!event.target.hasAttribute("checked")) {
-      //    event.target.src = "forbid-music-ckecked.png";
-      //    event.target.title = "Разрешить воспроизведение";
-      //    event.target.setAttribute("checked", "");
-      //    event.target.parentNode.querySelector(
-      //      ".music-menu__item-name"
-      //    ).style.opacity = "0.2";
-      //  } else if (event.target.hasAttribute("checked")) {
-      //    event.target.src = "forbid-music-unckecked.png";
-      //    event.target.title = "Запретить воспроизведение";
-      //    event.target.removeAttribute("checked");
-      //    event.target.parentNode.querySelector(
-      //      ".music-menu__item-name"
-      //    ).style.opacity = "1";
-      //  }
-    },
-    chooseThisMusic() {
-      //  if (event.target.className === "music-menu__item-forbid") {
-      //    return 0;
-      //  }
-      //
-      //  const currentMusic = document.querySelector(".active-music");
-      //  const newMusic = event.currentTarget.querySelector("audio");
-      //
-      //  currentMusic.pause();
-      //  currentMusic.currentTime = 0;
-      //  currentMusic.className = "inactive-music";
-      //
-      //  newMusic.className = "active-music";
-      //  newMusic.play();
-      //
-      //  let playImage = document.querySelector(".music-buttons__play-image");
-      //  if (playImage.parentNode.hasAttribute("pause")) {
-      //    playImage.src = "pause-music-button.png";
-      //    playImage.parentNode.removeAttribute("pause");
-      //    playImage.title = "Поставить на паузу";
-      //  }
     },
     playNextMusic() {
       //  const currentMusic = document.querySelector(".active-music");
@@ -249,32 +186,6 @@ export default {
     //    document.onmousemove = null;
     //  }
     },
-    showEventWindow(/*name, desc, image, option1, option2, type, musicName, musicSrc*/) {
-    //  event.currentTarget.setAttribute("checked", "");
-    //
-    //  document.querySelector('.event__name').innerHTML = name;
-    //  document.querySelector('.event__image').src = image;
-    //  document.querySelector('.event__desc').innerHTML = desc;
-    //  document.querySelector('.event__button-first').innerHTML = option1;
-    //  document.querySelector('.event__button-second').innerHTML = option2;
-    //  document.querySelector('.event').setAttribute("eventtype", `${type}`);
-    //  document.querySelector('.event').setAttribute("musicname", `${musicName}`);
-    //  document.querySelector('.event').setAttribute("musicsrc", `${musicSrc}`);
-    //
-    //  document.querySelector('.event').style.transform = "scale(1, 1)";
-    //  document.querySelector('.blackening').style.opacity = "0.8";
-    //  document.querySelector('.blackening').style.transform = "translate(0%)";
-    //
-    //  const musicList = JSON.parse(localStorage.getItem(`${currentScenario}MusicList`));
-    //
-    //  if (type === "music" && !musicList.some(music => music.src === document.querySelector('.event').getAttribute("musicsrc")) || type === "choice") {
-    //    document.querySelector('.event__button-second').style = "visibility: visible";
-    //    document.querySelector('.event__button-first').style = "border-top-left-radius: 0; border-top-right-radius: 0";
-    //  } else { 
-    //    document.querySelector('.event__button-second').style = "visibility: hidden";
-    //    document.querySelector('.event__button-first').style = "border-top-left-radius: 25px; border-top-right-radius: 25px";
-    //  }
-    },
     chooseEventOption() {
       //const musicName = event.target.parentNode.getAttribute("musicname");
       //const musicSrc = event.target.parentNode.getAttribute("musicsrc");
@@ -308,24 +219,27 @@ export default {
       // }
       console.log("click");
     },
+    setEventBlinking() {
+      setInterval(() => {
+        let events = document.querySelectorAll(".map__event-button");
+        for (let evnt of events) {
+          if (getComputedStyle(evnt).opacity === "1") {
+            evnt.style.opacity = "0.2";
+          } else if (!evnt.hasAttribute("checked")) {
+            evnt.style.opacity = "1";
+          }
+        }
+      }, 500);
+    },
     ...mapActions({
       initState: INIT_STATE
     })
   },
   mounted() {
     this.initState();
+    this.setEventBlinking();
+
     // this.dragElement(document.querySelector(".map"));
-    // this.setMusicList();
-    // this.setInterval(() => {
-    //   let events = document.querySelectorAll(".map__event-button");
-    //   for (let evnt of events) {
-    //     if (getComputedStyle(evnt).opacity === "1") {
-    //       evnt.style.opacity = "0.2";
-    //     } else if (!evnt.hasAttribute("checked")) {
-    //       evnt.style.opacity = "1";
-    //     }
-    //   }
-    // }, 500);
   }
 };
 </script>

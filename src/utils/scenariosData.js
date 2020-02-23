@@ -6,6 +6,12 @@ const scenariosData = {
       storyLine: ["Historical"],
       date: "Январь 1910г.",
       map: "map",
+      startingMusic: [
+        {
+          name: "Музыка 4",
+          src: "example1",
+        },
+      ],
       events: [
       ]
     }
@@ -16,6 +22,12 @@ const scenariosData = {
       storyLine: ["Historical"],
       date: "Январь 1924г.",
       map: "map",
+      startingMusic: [
+        {
+          name: "Музыка 2",
+          src: "example1",
+        },
+      ],
       events: [
       ]
     },
@@ -26,10 +38,10 @@ const scenariosData = {
       storyLine: ["Historical"],
       date: "Январь 1934г.",
       map: "map-1934-01-historical",
-      defaultMusic: [
+      startingMusic: [
         {
           name: "Музыка 1",
-          src: "example1.ogg",
+          src: "example1",
         },
       ],
       events: [
@@ -39,7 +51,7 @@ const scenariosData = {
           image: "scenario-second.jpg",
           option1: "Первая опция",
           type: "info",
-          icon: "red-circle",
+          icon: "battle-icon",
           positionX: "450px",
           positionY: "550px",
         },

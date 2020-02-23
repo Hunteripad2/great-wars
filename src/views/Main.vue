@@ -47,6 +47,7 @@
 
 <script>
 import closeTabs from "@/utils/closeTabs.js";
+import scenariosData from "@/utils/scenariosData.js";
 
 export default {
   name: "main-page",
@@ -61,7 +62,7 @@ export default {
       if (confirm("Все связанные с первым сценарием данные будут удалены")) {
         localStorage.setItem(`scenarioFirstCurrentPeriodIndex`, "0");
         localStorage.setItem(`scenarioFirstCurrentStoryline`, "Historical");
-        //localStorage.removeItem(`scenarioFirstMusicList`);
+        localStorage.setItem(`scenarioFirstCurrentMusicList`, JSON.stringify(scenariosData.scenarioFirst[0].startingMusic));
         alert("Прогресс первого сценария сброшен");
       }
     },
@@ -69,7 +70,7 @@ export default {
       if (confirm("Все связанные со вторым сценарием данные будут удалены")) {
         localStorage.setItem(`scenarioSecondCurrentPeriodIndex`, "0");
         localStorage.setItem(`scenarioSecondCurrentStoryline`, "Historical");
-        //localStorage.removeItem(`scenarioSecondMusicList`);
+        localStorage.setItem(`scenarioSecondCurrentMusicList`, JSON.stringify(scenariosData.scenarioSecond[0].startingMusic));
         alert("Прогресс второго сценария сброшен");
       }
     },
@@ -77,7 +78,7 @@ export default {
       if (confirm("Все связанные с третьим сценарием данные будут удалены")) {
         localStorage.setItem(`scenarioThirdCurrentPeriodIndex`, "0");
         localStorage.setItem(`scenarioThirdCurrentStoryline`, "Historical");
-        //localStorage.removeItem(`scenarioThirdMusicList`);
+        localStorage.setItem(`scenarioThirdCurrentMusicList`, JSON.stringify(scenariosData.scenarioThird[0].startingMusic));
         alert("Прогресс третьего сценария сброшен");
       }
     },
@@ -97,17 +98,17 @@ export default {
     if (!localStorage.getItem(`scenarioFirstCurrentPeriodIndex`)) {
       localStorage.setItem(`scenarioFirstCurrentPeriodIndex`, "0");
       localStorage.setItem(`scenarioFirstCurrentStoryline`, "Historical");
-      //localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
+      localStorage.setItem(`scenarioFirstCurrentMusicList`, JSON.stringify(scenariosData.scenarioFirst[0].startingMusic));
     }
     if (!localStorage.getItem(`scenarioSecondCurrentPeriodIndex`)) {
       localStorage.setItem(`scenarioSecondCurrentPeriodIndex`, "0");
       localStorage.setItem(`scenarioSecondCurrentStoryline`, "Historical");
-      //localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
+      localStorage.setItem(`scenarioSecondCurrentMusicList`, JSON.stringify(scenariosData.scenarioSecond[0].startingMusic));
     }
     if (!localStorage.getItem(`scenarioThirdCurrentPeriodIndex`)) {
       localStorage.setItem(`scenarioThirdCurrentPeriodIndex`, "0");
       localStorage.setItem(`scenarioThirdCurrentStoryline`, "Historical");
-      //localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(allData[currentScenario][localStorage.getItem(`${currentScenario}CurrentPeriodIndex`)].defaultMusic));
+      localStorage.setItem(`scenarioThirdCurrentMusicList`, JSON.stringify(scenariosData.scenarioThird[0].startingMusic));
     }
   }
 };

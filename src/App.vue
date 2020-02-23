@@ -295,7 +295,6 @@ button:focus {
 
 .music-menu {
     background-color: #2e2e2e;
-    list-style-type: none;
     padding: 0;
     margin: 0;
     position: absolute;
@@ -306,6 +305,12 @@ button:focus {
     width: 25%;
     height: 100%;
     z-index: 100;
+}
+
+.music-menu__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .music-menu__item {
@@ -364,10 +369,16 @@ button:focus {
     position: absolute;
 }
 
+.map__event-field {
+    height: 100%;
+    width: 100%;
+}
+
 .map__event-button {
     position: absolute;
     width: 40px;
     transition: opacity 1s;
+    z-index: 10;
 }
 
 .event {
