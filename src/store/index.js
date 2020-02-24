@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export const INIT_STATE = "INIT_STATE";
 export const SET_ACTIVE_MUSIC = "SET_ACTIVE_MUSIC";
+export const SET_CURRENT_EVENT = "SET_CURRENT_EVENT";
 
 export default new Vuex.Store({
   state: {
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     currentMusicList: null,
     playingMusic: null,
     scenariosData,
+    currentEvent: null,
   },
   mutations: {
     [INIT_STATE]: (state, payload) => {
@@ -21,6 +23,9 @@ export default new Vuex.Store({
       state.currentScenarioName = payload.newScenario;
       state.currentMusicList = payload.newMusicList;
       state.playingMusic = payload.newPlayingMusic;
+    },
+    [SET_CURRENT_EVENT]: (state, payload) => {
+      state.currentEvent = payload.newCurrentEvent;
     }
   },
   getters: {
@@ -55,6 +60,9 @@ export default new Vuex.Store({
       const playingMusic = document.querySelector(".audio");
 
       context.commit(SET_ACTIVE_MUSIC, { newPlayingMusic: playingMusic });
+    },
+    [SET_CURRENT_EVENT]: (context, payload) => {
+      context.commit(SET_CURRENT_EVENT, { newCurrentEvent: payload.newEvent });
     }
   },
   modules: {}

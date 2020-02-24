@@ -1,69 +1,31 @@
 <template>
   <div class="map-screen">
-    <header class="header">
-      <div class="header__top">
-        <div class="header__background-left-image"></div>
-        <div class="header__background-right-image"></div>
-        <div class="header__return-to-main-menu">
-          <router-link to="/" class="return-to-mainmenu__link">Главное меню</router-link>
-        </div>
-        <img src="../assets/logo.png" class="header__logo">
-        <div class="music-buttons">
-          <button class="music-buttons__play-button" @click="playCurrentMusic" pause>
-            <img class="music-buttons__play-image" src="../assets/play-music-button.png" title="Снять с паузы">
-          </button>
-          <button class="music-buttons__nextmusic-button" @click="playNextMusic">
-            <img class="music-buttons__nextmusic-image" src="../assets/next-music-button.png" title="Следующая композиция">
-          </button>
-          <button class="music-buttons__musiclist-button" @click="showMusicMenu">
-            <img class="music-buttons__musiclist-image" src="../assets/music-list-button.png" title="Список композиций">
-          </button>
-        </div>
-      </div>
-      <div class="turn-counter">
-        <DateCount />
-        <button class="turn-counter__button" @click="endTurn">
-          <img class="turn-counter__image" src="../assets/turn-button.png">
-        </button>
-      </div>
-    </header>
-    <main>
-      <div class="map-background"></div>
-      <div class="map">
-        <MapImage />
-        <EventIcons />
-      </div>
-    </main>
+    <MapHeader />
+    <MapContent />
     <div class="blackening" @click="closeTabs"></div>
     <div class="music-menu">
       <MusicList />
     </div>
-    <div class="event">
-      <h1 class="event__name"></h1>
-      <img class="event__image" src>
-      <p class="event__desc"></p>
-      <button class="event__button-first" @click="chooseEventOption" />
-      <button class="event__button-second" @click="chooseEventOption" />
-    </div>
+    <EventModal />
   </div>
 </template>
 
 <script>
 import closeTabs from "@/utils/closeTabs.js";
-import MapImage from "@/components/MapImage.vue";
-import EventIcons from "@/components/EventIcons.vue";
 import MusicList from "@/components/MusicList.vue";
-import DateCount from "@/components/DateCount.vue";
+import MapHeader from '@/components/MapHeader.vue';
+import MapContent from '@/components/MapContent.vue';
+import EventModal from '@/components/EventModal.vue';
 import { INIT_STATE } from '@/store';
 import { mapActions } from 'vuex'
 
 export default {
   name: "map-page",
   components: {
-    MapImage,
-    DateCount,
-    EventIcons,
     MusicList,
+    MapHeader,
+    MapContent,
+    EventModal
   },
   methods: {
     closeTabs,
@@ -243,3 +205,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.map-screen {
+  height: 100%;
+}
+</style>

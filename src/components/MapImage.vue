@@ -1,6 +1,6 @@
 <template>
   <div v-if="currentMap">
-    <img class="map__map" :src="require('@/assets/' + currentMap + '.png')" />
+    <img class="map-image" :src="require('@/assets/' + currentMap + '.png')" />
   </div>
 </template>
 
@@ -16,4 +16,9 @@ export default {
 </script>
 
 <style scoped>
+.map-image {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+}
 </style>

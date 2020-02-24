@@ -1,22 +1,33 @@
 <template>
-  <div v-if="currentEvents" class="map__event-field">
-    <button :style="`left: ${event.positionX}; top: ${event.positionY}`" class="map__event-button" @click="showEventWindow" v-for="event in currentEvents" v-bind:key="event.name">
-      <img :src="require('@/assets/' + event.icon + '.png')" class="map__event-icon">
+  <div v-if="currentEvents" class="event-icons">
+    <button
+      :style="`left: ${event.positionX}; top: ${event.positionY}`"
+      class="map__event-button"
+      @click="showEventWindow(event)"
+      v-for="event in currentEvents"
+      v-bind:key="event.name"
+    >
+      <img :src="require('@/assets/' + event.icon + '.png')" class="map__event-icon" />
     </button>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { SET_CURRENT_EVENT } from "@/store";
 export default {
   name: "event-icons",
   computed: {
     currentEvents() {
-      return this.$store.getters.currentEvents
-    },
+      return this.$store.getters.currentEvents;
+    }
   },
   methods: {
-    showEventWindow() {
-      console.log("click");
+    ...mapActions({
+      setNewEvent: SET_CURRENT_EVENT
+    }),
+    showEventWindow(event) {
+      this.setNewEvent({ newEvent: event });
     }
     //showEventWindow(evnt /*name, desc, image, option1, option2, type, musicName, musicSrc*/) {
     //  console.log(evnt);
@@ -40,7 +51,7 @@ export default {
     //  if (type === "music" && !musicList.some(music => music.src === document.querySelector('.event').getAttribute("musicsrc")) || type === "choice") {
     //    document.querySelector('.event__button-second').style = "visibility: visible";
     //    document.querySelector('.event__button-first').style = "border-top-left-radius: 0; border-top-right-radius: 0";
-    //  } else { 
+    //  } else {
     //    document.querySelector('.event__button-second').style = "visibility: hidden";
     //    document.querySelector('.event__button-first').style = "border-top-left-radius: 25px; border-top-right-radius: 25px";
     //  }
@@ -50,4 +61,16 @@ export default {
 </script>
 
 <style scoped>
+.event-icons {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.map__event-button {
+  position: absolute;
+  width: 40px;
+  transition: opacity 1s;
+  z-index: 10;
+}
 </style>
