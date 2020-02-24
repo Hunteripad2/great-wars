@@ -254,6 +254,7 @@ button:focus {
 
 .turn-counter {
     position: absolute;
+    z-index: 1;
     left: 42%;
     width: 16%;
     line-height: 30px;
@@ -359,7 +360,6 @@ button:focus {
     left: 10%;
     height: 1080px;
     width: 1468px;
-    z-index: -1;
     border: 3px dashed black;
     border-radius: 5%;
     cursor: grab;
@@ -391,6 +391,10 @@ button:focus {
     transform: scale(0, 0);
     transition: transform 0.3s;
     z-index: 100;
+}
+
+.event__window {
+    height: 100%;
 }
 
 .event__name {

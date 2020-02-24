@@ -1,13 +1,15 @@
 <template>
-  <ul v-if="currentMusicList" class="music-menu__list">
-    <li class="music-menu__item" @click="chooseThisMusic" v-for="music in currentMusicList" v-bind:key="music.name">
-      <span class="music-menu__item-name">{{music.name}}</span>
-      <audio @ended="playNextMusic">
-        <source :src="require('@/assets/' + music.src + '.ogg')" type="audio/ogg">
-      </audio>
-      <img src="@/assets/forbid-music-unckecked.png" class="music-menu__item-forbid" @click="forbidMusic" title="Запретить воспроизведение">
-    </li>
-  </ul>
+  <div class="music-menu">
+    <ul v-if="currentMusicList" class="music-menu__list">
+      <li class="music-menu__item" @click="chooseThisMusic" v-for="music in currentMusicList" v-bind:key="music.name">
+        <span class="music-menu__item-name">{{music.name}}</span>
+        <audio @ended="playNextMusic">
+          <source :src="require('@/assets/' + music.src + '.ogg')" type="audio/ogg">
+        </audio>
+        <img src="@/assets/forbid-music-unckecked.png" class="music-menu__item-forbid" @click="forbidMusic" title="Запретить воспроизведение">
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -30,13 +32,17 @@ export default {
         return 0;
       }
 
-      const currentMusic = this.playingMusic;
-      console.log(currentMusic);
+      let currentMusic;
+      if (!this.playingMusic) {
+        currentMusic = document.querySelectorAll('audio')[0];
+      } else currentMusic = this.playingMusic;
       const newMusic = event.currentTarget.querySelector("audio");
 
       currentMusic.pause();
       currentMusic.currentTime = 0;
       newMusic.play();
+
+      this.setActiveMusic({ newPlayingMusic: newMusic });
 
       let playImage = document.querySelector(".music-buttons__play-image");
       if (playImage.parentNode.hasAttribute("pause")) {
@@ -62,9 +68,6 @@ export default {
       setActiveMusic: SET_ACTIVE_MUSIC
     })
   },
-  mounted() {
-    this.setActiveMusic();
-  }
 };
 </script>
 

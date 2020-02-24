@@ -35,16 +35,8 @@
       </div>
     </main>
     <div class="blackening" @click="closeTabs"></div>
-    <div class="music-menu">
-      <MusicList />
-    </div>
-    <div class="event">
-      <h1 class="event__name"></h1>
-      <img class="event__image" src>
-      <p class="event__desc"></p>
-      <button class="event__button-first" @click="chooseEventOption" />
-      <button class="event__button-second" @click="chooseEventOption" />
-    </div>
+    <MusicList />
+    <EventWindow />
   </div>
 </template>
 
@@ -54,6 +46,7 @@ import MapImage from "@/components/MapImage.vue";
 import EventIcons from "@/components/EventIcons.vue";
 import MusicList from "@/components/MusicList.vue";
 import DateCount from "@/components/DateCount.vue";
+import EventWindow from "@/components/EventWindow.vue";
 import { INIT_STATE } from '@/store';
 import { mapActions } from 'vuex'
 
@@ -64,6 +57,7 @@ export default {
     DateCount,
     EventIcons,
     MusicList,
+    EventWindow,
   },
   methods: {
     closeTabs,
@@ -185,20 +179,6 @@ export default {
     //    document.onmouseup = null;
     //    document.onmousemove = null;
     //  }
-    },
-    chooseEventOption() {
-      //const musicName = event.target.parentNode.getAttribute("musicname");
-      //const musicSrc = event.target.parentNode.getAttribute("musicsrc");
-      //let musicList = JSON.parse(localStorage.getItem(`${currentScenario}MusicList`));
-      //
-      //if (event.target.parentNode.getAttribute("eventtype") === "music" && event.target === document.querySelector('.event__button-second')) {
-      //  document.querySelector('.music-menu').insertAdjacentHTML('beforeend', `<li class="music-menu__item" onclick="chooseThisMusic()"><span class="music-menu__item-name">${musicName}</span><audio class="inactive-music" onended="playNextMusic()"><source src="${musicSrc}" type="audio/ogg"></audio><img src="forbid-music-unckecked.png" class="music-menu__item-forbid" onclick="forbidMusic()" title="Запретить воспроизведение"></li>`);
-      //
-      //  musicList.push({name: musicName, src: musicSrc});
-      //  localStorage.setItem(`${currentScenario}MusicList`, JSON.stringify(musicList));
-      //}
-  
-      //closeTabs();
     },
     endTurn() {
       // const currentEventList = document.querySelectorAll(".map__event-button");

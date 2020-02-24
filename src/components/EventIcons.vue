@@ -1,26 +1,42 @@
 <template>
   <div v-if="currentEvents" class="map__event-field">
-    <button :style="`left: ${event.positionX}; top: ${event.positionY}`" class="map__event-button" @click="showEventWindow" v-for="event in currentEvents" v-bind:key="event.name">
+    <button :style="`left: ${event.positionX}; top: ${event.positionY}`" 
+            class="map__event-button" 
+            @click="showEventWindow(event)" 
+            v-for="event in currentEvents" 
+            v-bind:key="event.name"
+    >
       <img :src="require('@/assets/' + event.icon + '.png')" class="map__event-icon">
     </button>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { SET_EVENT_DATA } from "@/store";
+
 export default {
   name: "event-icons",
   computed: {
     currentEvents() {
-      return this.$store.getters.currentEvents
+      return this.$store.getters.currentEvents;
     },
   },
   methods: {
-    showEventWindow() {
-      console.log("click");
-    }
+    showEventWindow(evnt) {
+      this.setEventData({ newEventData: evnt });
+      event.currentTarget.setAttribute("checked", "");
+      event.currentTarget.style.opacity = "0.2";
+      document.querySelectorAll('.event')[0].style.transform = "scale(1, 1)";
+      document.querySelector('.blackening').style.opacity = "0.8";
+      document.querySelector('.blackening').style.transform = "translate(0%)";
+    },
+    ...mapActions({
+      setEventData: SET_EVENT_DATA
+    }),
     //showEventWindow(evnt /*name, desc, image, option1, option2, type, musicName, musicSrc*/) {
     //  console.log(evnt);
-    //  event.currentTarget.setAttribute("checked", "");
+    //  
     //
     //  document.querySelector('.event__name').innerHTML = name;
     //  document.querySelector('.event__image').src = image;
