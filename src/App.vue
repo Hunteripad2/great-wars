@@ -206,89 +206,6 @@ button:focus {
     width: fit-content;
 }
 
-.header__return-to-main-menu {
-    display: flex;
-    align-items: center;
-    margin-left: 8px;
-    z-index: 1;
-}
-
-.header__top {
-    background-color: #484848;
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    position: relative;
-}
-
-.header__logo {
-    width: 50%;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    z-index: 1;
-}
-
-.header__background-left-image {
-    background-image: url("./assets/header-background-left-image.jpg");
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 100%;
-    opacity: .5;
-    background-position: 0% 15%;
-    background-size: cover;
-}
-
-.header__background-right-image {
-    background-image: url("./assets/header-background-right-image.jpg");
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30%;
-    height: 100%;
-    opacity: .5;
-    background-position: 0% 25%;
-    background-size: cover;
-}
-
-.turn-counter {
-    position: absolute;
-    left: 42%;
-    width: 16%;
-    line-height: 30px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 0px 0px 90px 90px;
-    background-color: #484848;
-}
-
-.turn-counter__button {
-    width: 35px;
-    vertical-align: middle;
-    margin-left: 3%;
-}
-
-.turn-counter__image {
-    width: 100%;
-}
-
-.music-buttons {
-    display: flex;
-    align-items: center;
-    margin-right: 8px;
-    z-index: 1;
-}
-
-.music-buttons__play-button, 
-.music-buttons__musiclist-button,
-.music-buttons__nextmusic-button {
-    width: 65px;
-}
-
-.music-buttons__play-image,
-.music-buttons__musiclist-image,
-.music-buttons__nextmusic-image,
 .map__event-icon {
     width: 100%;
 }
@@ -340,45 +257,6 @@ button:focus {
 
 .music-menu__item-forbid:hover {
     opacity: 0.5;
-}
-
-.map-background {
-    background-image: url("./assets/mapmenu-background-image.jpg");
-    background-repeat: no-repeat;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    z-index: -1;
-}
-
-.map {
-    position: absolute;
-    left: 10%;
-    height: 1080px;
-    width: 1468px;
-    z-index: -1;
-    border: 3px dashed black;
-    border-radius: 5%;
-    cursor: grab;
-}
-
-.map__map {
-    position: absolute;
-}
-
-.map__event-field {
-    height: 100%;
-    width: 100%;
-}
-
-.map__event-button {
-    position: absolute;
-    width: 40px;
-    transition: opacity 1s;
-    z-index: 10;
 }
 
 .event {
