@@ -215,6 +215,7 @@ button:focus {
 
 .header__top {
     background-color: #484848;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -225,7 +226,7 @@ button:focus {
     width: 50%;
     margin-top: 4px;
     margin-bottom: 4px;
-    z-index: 1;
+    z-index: 3;
 }
 
 .header__background-left-image {
@@ -254,7 +255,7 @@ button:focus {
 
 .turn-counter {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     left: 42%;
     width: 16%;
     line-height: 30px;
@@ -378,7 +379,7 @@ button:focus {
     position: absolute;
     width: 40px;
     transition: opacity 1s;
-    z-index: 10;
+    z-index: 1;
 }
 
 .event {
