@@ -1,19 +1,16 @@
 <template>
-  <div class="music-menu">
+  <div class="music-menu" :style="musicTabStatus">
     <ul v-if="currentMusicList" class="music-menu__list">
-      <li class="music-menu__item" @click="chooseThisMusic" v-for="music in currentMusicList" v-bind:key="music.name">
-        <span class="music-menu__item-name">{{music.name}}</span>
-        <audio @ended="playNextMusic">
-          <source :src="require('@/assets/' + music.src + '.ogg')" type="audio/ogg">
-        </audio>
-        <img src="@/assets/forbid-music-unckecked.png" class="music-menu__item-forbid" @click="forbidMusic" title="Запретить воспроизведение">
+      <li class="music-menu__item" v-for="(music, index) in currentMusicList" v-bind:key="music.name" @click="chooseThisMusic(index)">
+        <span class="music-menu__item-name" :style="forbidStatusMusicName(index)">{{music.name}}</span>
+        <img :src="require('@/assets/music_player/track_status/' + music.status + '.png')" class="music-menu__item-forbid" @click="forbidMusic(index)" :title="forbidTooltip(index)">
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { SET_ACTIVE_MUSIC } from '@/store';
+import { SET_ACTIVE_MUSIC, CHANGE_MUSIC_STATUS } from '@/store';
 import { mapActions } from 'vuex'
 
 export default {
@@ -24,48 +21,46 @@ export default {
     },
     playingMusic() {
       return this.$store.getters.playingMusic;
-    }
+    },
+    currentMusicTabStatus() {
+      return this.$store.getters.currentMusicTabStatus;
+    },
+    musicTabStatus() {
+      if (this.currentMusicTabStatus) {
+        return 'transform: translate(0%)';
+      } else return 'transform: translate(100%)';
+    },
   },
   methods: {
-    chooseThisMusic() {
+    chooseThisMusic(musicIndex) {
       if (event.target.className === "music-menu__item-forbid") {
         return 0;
       }
-
-      let currentMusic;
-      if (!this.playingMusic) {
-        currentMusic = document.querySelectorAll('audio')[0];
-      } else currentMusic = this.playingMusic;
-      const newMusic = event.currentTarget.querySelector("audio");
-
-      currentMusic.pause();
-      currentMusic.currentTime = 0;
-      newMusic.play();
-
-      this.setActiveMusic({ newPlayingMusic: newMusic });
-
-      let playImage = document.querySelector(".music-buttons__play-image");
-      if (playImage.parentNode.hasAttribute("pause")) {
-        //playImage.src = "pause-music-button.png";
-        playImage.parentNode.removeAttribute("pause");
-        playImage.title = "Поставить на паузу";
-      }
+      //currentMusic.currentTime = 0;
+      this.setActiveMusic({ newPlayingMusic: this.currentMusicList[musicIndex] });
+      //let playImage = document.querySelector(".music-buttons__play-image");
+      //if (playImage.parentNode.hasAttribute("pause")) {
+      //  //playImage.src = "pause-music-button.png";
+      //  playImage.parentNode.removeAttribute("pause");
+      //  playImage.title = "Поставить на паузу";
+      //}
     },
-    forbidMusic() {
-      if (!event.target.hasAttribute("checked")) {
-        //event.target.src = "@/assets/forbid-music-ckecked.png";
-        event.target.title = "Разрешить воспроизведение";
-        event.target.setAttribute("checked", "");
-        event.target.parentNode.querySelector(".music-menu__item-name").style.opacity = "0.2";
-      } else if (event.target.hasAttribute("checked")) {
-        //event.target.src = "@/assets/forbid-music-unckecked.png";
-        event.target.title = "Запретить воспроизведение";
-        event.target.removeAttribute("checked");
-        event.target.parentNode.querySelector(".music-menu__item-name").style.opacity = "1";
-      }
+    forbidTooltip(musicIndex) {
+      if (this.currentMusicList[musicIndex].status === "allowed") {
+        return "Запретить воспроизведение";
+      } else return "Разрешить воспроизведение";
+    },
+    forbidStatusMusicName(musicIndex) {
+      if (this.currentMusicList[musicIndex].status === "allowed") {
+        return "opacity: 1";
+      } else return "opacity: 0.2";
+    },
+    forbidMusic(musicIndex) {
+      this.changeMusicStatus({ musicIndex });
     },
     ...mapActions({
-      setActiveMusic: SET_ACTIVE_MUSIC
+      setActiveMusic: SET_ACTIVE_MUSIC,
+      changeMusicStatus: CHANGE_MUSIC_STATUS,
     })
   },
 };

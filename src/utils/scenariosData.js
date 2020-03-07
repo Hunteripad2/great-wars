@@ -10,6 +10,7 @@ const scenariosData = {
         {
           name: "Музыка 4",
           src: "example1",
+          status: "allowed",
         },
       ],
       events: [
@@ -26,6 +27,7 @@ const scenariosData = {
         {
           name: "Музыка 2",
           src: "example1",
+          status: "allowed",
         },
       ],
       events: [
@@ -42,10 +44,12 @@ const scenariosData = {
         {
           name: "Музыка 1",
           src: "example1",
+          status: "allowed",
         },
         {
           name: "Музыка 2",
           src: "example2",
+          status: "forbidden",
         },
       ],
       events: [
@@ -87,7 +91,7 @@ const scenariosData = {
     {
       storyLine: ["Historical", "Test"],
       date: "Февраль 1934г.",
-      map: "map-1934-01-historical.png",
+      map: "map-1934-01-historical",
       events: [
         {
           name: "Название альтернативного события",
@@ -104,7 +108,7 @@ const scenariosData = {
     {
       storyLine: ["Historical"],
       date: "Февраль 1934г.",
-      map: "map-1934-01-historical.png",
+      map: "map-1934-01-historical",
       events: [
         {
           name: "Название события номер 4",

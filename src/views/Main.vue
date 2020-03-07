@@ -46,13 +46,11 @@
 </template>
 
 <script>
-import closeTabs from "@/utils/closeTabs.js";
 import scenariosData from "@/utils/scenariosData.js";
 
 export default {
   name: "main-page",
   methods: {
-    closeTabs,
     showSettingsMenu() {
       document.querySelector(".settings-menu").style.transform = "scale(1, 1)";
       document.querySelector(".blackening").style.opacity = "0.8";
