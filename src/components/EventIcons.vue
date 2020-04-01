@@ -6,14 +6,14 @@
             v-for="event in currentEvents" 
             v-bind:key="event.name"
     >
-      <img :src="require('@/assets/' + event.icon + '.png')" class="map__event-icon">
+      <img :src="require('@/assets/' + event.icon + '.png')" class="map__event-icon" :style="eventIconStyle">
     </button>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { SET_EVENT_DATA } from "@/store";
+import { SET_EVENT_DATA, SHOW_EVENT_MENU } from "@/store";
 
 export default {
   name: "event-icons",
@@ -21,18 +21,25 @@ export default {
     currentEvents() {
       return this.$store.getters.currentEvents;
     },
+    currentEventIconsBlinkingStatus() {
+      return this.$store.getters.currentEventIconsBlinkingStatus;
+    },
+    eventIconStyle() {
+      if (this.currentEventIconsBlinkingStatus) {
+        return "opacity: 1";
+      } else return "opacity: 0.4";
+    }
   },
   methods: {
     showEventWindow(evnt) {
       this.setEventData({ newEventData: evnt });
+      this.showEventMenu();
       event.currentTarget.setAttribute("checked", "");
       event.currentTarget.style.opacity = "0.2";
-      document.querySelectorAll('.event')[0].style.transform = "scale(1, 1)";
-      document.querySelector('.blackening').style.opacity = "0.8";
-      document.querySelector('.blackening').style.transform = "translate(0%)";
     },
     ...mapActions({
-      setEventData: SET_EVENT_DATA
+      setEventData: SET_EVENT_DATA,
+      showEventMenu: SHOW_EVENT_MENU,
     }),
     //showEventWindow(evnt /*name, desc, image, option1, option2, type, musicName, musicSrc*/) {
     //  console.log(evnt);

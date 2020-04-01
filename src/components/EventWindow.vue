@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentEvent" class="event">
+  <div v-if="currentEvent" class="event" :style="eventTabStatus">
     <h1 class="event__name">{{currentEvent.name}}</h1>
     <img class="event__image" :src="require('@/assets/' + currentEvent.image + '.jpg')">
     <p class="event__desc">{{currentEvent.desc}}</p>
@@ -12,6 +12,14 @@
 export default {
   name: "event-window",
   computed: {
+    currentEventTabStatus() {
+      return this.$store.getters.currentEventTabStatus;
+    },
+    eventTabStatus() {
+      if (this.currentEventTabStatus) {
+        return 'transform: scale(1, 1)';
+      } else return 'transform: scale(0, 0)';
+    },
     currentEvent() {
       return this.$store.getters.currentEventData;
     },

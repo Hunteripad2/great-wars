@@ -14,99 +14,52 @@
         </li>
       </ul>
     </main>
-    <div class="blackening" @click="closeTabs"></div>
-    <div class="resource-menu">
-      <ul class="resource-menu__category-list">
-        <li class="resource-menu__category-item_inactive">
-          <button class="resource-menu__category-button" @click="chooseThisCategory">Книги</button>
-        </li>
-        <li class="resource-menu__category-item_inactive">
-          <button class="resource-menu__category-button" @click="chooseThisCategory">Статьи</button>
-        </li>
-        <li class="resource-menu__category-item_inactive">
-          <button class="resource-menu__category-button" @click="chooseThisCategory">Фильмы</button>
-        </li>
-      </ul>
-      <h1 class="resource-menu__choose-category">Выберите раздел</h1>
-    </div>
-    <div class="settings-menu">
-      <ul class="settings-menu__progress-list">
-        <li class="settings-menu__progress-item">
-          <button class="settings-menu__progress-button" @click="resetProgressFirst">Сбросить прогресс первого сценария</button>
-        </li>
-        <li class="settings-menu__progress-item">
-          <button class="settings-menu__progress-button" @click="resetProgressSecond">Сбросить прогресс второго сценария</button>
-        </li>
-        <li class="settings-menu__progress-item">
-          <button class="settings-menu__progress-button" @click="resetProgressThird">Сбросить прогресс третьего сценария</button>
-        </li>
-      </ul>
-    </div>
+    <Blackening />
+    <ResourceMenu />
+    <SettingsMenu />
   </div>
 </template>
 
 <script>
-import scenariosData from "@/utils/scenariosData.js";
+import Blackening from "@/components/Blackening.vue";
+import ResourceMenu from "@/components/ResourceMenu.vue";
+import SettingsMenu from "@/components/SettingsMenu.vue";
+import { mapActions } from 'vuex'
+import { SHOW_SETTINGS_MENU, SHOW_RESOURCE_MENU } from '@/store';
 
 export default {
   name: "main-page",
+  components: {
+    Blackening,
+    ResourceMenu,
+    SettingsMenu,
+  },
+  computed: {
+    scenariosData() {
+      return this.$store.getters.scenariosData;
+    },
+  },
   methods: {
-    showSettingsMenu() {
-      document.querySelector(".settings-menu").style.transform = "scale(1, 1)";
-      document.querySelector(".blackening").style.opacity = "0.8";
-      document.querySelector(".blackening").style.transform = "translate(0%)";
-    },
-    resetProgressFirst() {
-      if (confirm("Все связанные с первым сценарием данные будут удалены")) {
-        localStorage.setItem(`scenarioFirstCurrentPeriodIndex`, "0");
-        localStorage.setItem(`scenarioFirstCurrentStoryline`, "Historical");
-        localStorage.setItem(`scenarioFirstCurrentMusicList`, JSON.stringify(scenariosData.scenarioFirst[0].startingMusic));
-        alert("Прогресс первого сценария сброшен");
-      }
-    },
-    resetProgressSecond() {
-      if (confirm("Все связанные со вторым сценарием данные будут удалены")) {
-        localStorage.setItem(`scenarioSecondCurrentPeriodIndex`, "0");
-        localStorage.setItem(`scenarioSecondCurrentStoryline`, "Historical");
-        localStorage.setItem(`scenarioSecondCurrentMusicList`, JSON.stringify(scenariosData.scenarioSecond[0].startingMusic));
-        alert("Прогресс второго сценария сброшен");
-      }
-    },
-    resetProgressThird() {
-      if (confirm("Все связанные с третьим сценарием данные будут удалены")) {
-        localStorage.setItem(`scenarioThirdCurrentPeriodIndex`, "0");
-        localStorage.setItem(`scenarioThirdCurrentStoryline`, "Historical");
-        localStorage.setItem(`scenarioThirdCurrentMusicList`, JSON.stringify(scenariosData.scenarioThird[0].startingMusic));
-        alert("Прогресс третьего сценария сброшен");
-      }
-    },
-    showResourceMenu() {
-      document.querySelector('.resource-menu').style.transform = "translateY(0%)";
-      document.querySelector('.blackening').style.opacity = "0.8";
-      document.querySelector('.blackening').style.transform = "translate(0%)";
-    },
-    chooseThisCategory() {
-      if (document.querySelector('.resource-menu__category-item_active')) {
-        document.querySelector('.resource-menu__category-item_active').className = "resource-menu__category-item_inactive";
-      }
-      event.target.parentNode.className = "resource-menu__category-item_active";
-    }
+    ...mapActions({
+      showResourceMenu: SHOW_RESOURCE_MENU,
+      showSettingsMenu: SHOW_SETTINGS_MENU,
+    })
   },
   created() {
     if (!localStorage.getItem(`scenarioFirstCurrentPeriodIndex`)) {
       localStorage.setItem(`scenarioFirstCurrentPeriodIndex`, "0");
       localStorage.setItem(`scenarioFirstCurrentStoryline`, "Historical");
-      localStorage.setItem(`scenarioFirstCurrentMusicList`, JSON.stringify(scenariosData.scenarioFirst[0].startingMusic));
+      localStorage.setItem(`scenarioFirstCurrentMusicList`, JSON.stringify(this.scenariosData.scenarioFirst[0].startingMusic));
     }
     if (!localStorage.getItem(`scenarioSecondCurrentPeriodIndex`)) {
       localStorage.setItem(`scenarioSecondCurrentPeriodIndex`, "0");
       localStorage.setItem(`scenarioSecondCurrentStoryline`, "Historical");
-      localStorage.setItem(`scenarioSecondCurrentMusicList`, JSON.stringify(scenariosData.scenarioSecond[0].startingMusic));
+      localStorage.setItem(`scenarioSecondCurrentMusicList`, JSON.stringify(this.scenariosData.scenarioSecond[0].startingMusic));
     }
     if (!localStorage.getItem(`scenarioThirdCurrentPeriodIndex`)) {
       localStorage.setItem(`scenarioThirdCurrentPeriodIndex`, "0");
       localStorage.setItem(`scenarioThirdCurrentStoryline`, "Historical");
-      localStorage.setItem(`scenarioThirdCurrentMusicList`, JSON.stringify(scenariosData.scenarioThird[0].startingMusic));
+      localStorage.setItem(`scenarioThirdCurrentMusicList`, JSON.stringify(this.scenariosData.scenarioThird[0].startingMusic));
     }
   }
 };
@@ -118,5 +71,38 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+}
+.logo {
+  margin-top: 10%;
+  margin-left: 21%;
+  width: 60%;
+}
+.menu {
+  margin: 0;
+  padding: 0;
+  margin-top: 7%;
+  list-style: none;
+  text-align: center;
+}
+.menu__item {
+  margin-bottom: 4%;
+}
+.menu__option {
+  font-size: 36px;
+}
+@media (max-width: 1600px) {
+  .menu__option { font-size: 30px; }
+}
+@media (max-width: 1280px) {
+  .menu__option { font-size: 24px; }
+}
+@media (max-width: 960px) {
+  .menu__option { font-size: 18px; }
+}
+@media (max-width: 640px) {
+  .menu__option { font-size: 12px; }
+}
+.menu__option:hover {
+  opacity: 0.5;
 }
 </style>

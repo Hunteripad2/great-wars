@@ -35,31 +35,13 @@ button:focus {
     outline: none;
 }
 
-.logo {
-    padding-top: 10%;
-    padding-left: 21%;
-    width: 60%;
-}
 
-.menu {
-    list-style: none;
-    text-align: center;
-    padding-top: 6%;
-    padding-left: 0;
-}
 
-.menu__item {
-    padding-bottom: 3%;
-    width: 98%;
-}
 
-.menu__option, .return-to-mainmenu__link {
-    font-size: 36px;
-}
-.menu__option:hover, 
-.return-to-mainmenu__link:hover {
-    opacity: 0.5;
-}
+
+
+
+
 
 .resource-menu {
     background-color: #2e2e2e;
@@ -129,88 +111,32 @@ button:focus {
     font-size: 30px;
 }
 
-.choose-scenario {
-    text-align: center;
-    font-size: 80px;
-    cursor: default;
-}
 
-.scenarios {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-}
 
-.scenarios__item {
-    position: relative;
-    width: 30%;
-}
 
-.scenarios__blackout {
-    background-color: #202020;
-    position: absolute;
-    left: 0%;
-    top: -0.2%;
-    width: 100%;
-    height: 99.6%;
-    border-radius: 8%;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
 
-.scenarios__item:hover .scenarios__blackout {
-    opacity: 0.8;
-}
 
-.scenarios__item:hover .scenarios__date,
-.scenarios__item:hover .scenarios__progress {
-    margin-left: 0;
-}
 
-.scenarios__item:hover .scenarios__name {
-    margin-right: 0;
-}
 
-.scenarios__image {
-    width: 100%;
-    border-radius: 8%;
-}
 
-.scenarios__progress,
-.scenarios__name,
-.scenarios__date {
-    font-size: 20px;
-    text-align: center;
-    line-height: 60%;
-}
 
-.scenarios__progress {
-    padding-top: 40%;
-    margin-left: 15%;
-    transition: margin-left 0.3s;
-}
 
-.scenarios__name {
-    font-size: 25px;
-    margin-right: 15%;
-    transition: margin-right 0.3s;
-}
 
-.scenarios__date {
-    margin-left: 15%;
-    transition: margin-left 0.3s;
-}
 
-.return-to-mainmenu {
-    margin: 3%;
-    width: fit-content;
-}
+
+
+
+
+
 
 .header__return-to-main-menu {
     display: flex;
     align-items: center;
     margin-left: 8px;
     z-index: 1;
+}
+.header__return-to-mainmenu-link {
+    font-size: 36px;
 }
 
 .header__top {
@@ -378,8 +304,11 @@ button:focus {
 .map__event-button {
     position: absolute;
     width: 40px;
-    transition: opacity 1s;
     z-index: 1;
+}
+
+.map__event-icon {
+    transition: opacity 0.9s;
 }
 
 .event {

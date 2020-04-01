@@ -20,7 +20,7 @@ import { SHOW_MUSIC_MENU } from '@/store';
 import { mapActions } from 'vuex'
 
 export default {
-  name: "map-image",
+  name: "music-player",
   computed: {
     playingMusic() {
       return this.$store.getters.playingMusic;

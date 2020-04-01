@@ -5,7 +5,7 @@
         <div class="header__background-left-image"></div>
         <div class="header__background-right-image"></div>
         <div class="header__return-to-main-menu">
-          <router-link to="/" class="return-to-mainmenu__link">Главное меню</router-link>
+          <router-link to="/" class="header__return-to-mainmenu-link">Главное меню</router-link>
         </div>
         <img src="../assets/logo.png" class="header__logo">
         <MusicPlayer />
@@ -31,26 +31,26 @@
 </template>
 
 <script>
+import MusicPlayer from "@/components/MusicPlayer.vue";
+import DateCount from "@/components/DateCount.vue";
 import MapImage from "@/components/MapImage.vue";
 import EventIcons from "@/components/EventIcons.vue";
-import MusicList from "@/components/MusicList.vue";
-import DateCount from "@/components/DateCount.vue";
-import EventWindow from "@/components/EventWindow.vue";
-import MusicPlayer from "@/components/MusicPlayer.vue";
 import Blackening from "@/components/Blackening.vue";
-import { INIT_STATE, END_TURN } from '@/store';
+import MusicList from "@/components/MusicList.vue";
+import EventWindow from "@/components/EventWindow.vue";
+import { INIT_STATE, END_TURN, EVENT_BLINK, EVENT_UNBLINK } from '@/store';
 import { mapActions } from 'vuex'
 
 export default {
   name: "map-page",
   components: {
-    MapImage,
+    MusicPlayer,
     DateCount,
+    MapImage,
     EventIcons,
+    Blackening,
     MusicList,
     EventWindow,
-    MusicPlayer,
-    Blackening,
   },
   computed: {
     currentMusicList() {
@@ -58,6 +58,9 @@ export default {
     },
     playingMusic() {
       return this.$store.getters.playingMusic;
+    },
+    currentEventIconsBlinkingStatus() {
+      return this.$store.getters.currentEventIconsBlinkingStatus;
     },
   },
   methods: {
@@ -108,25 +111,22 @@ export default {
     },
     setEventBlinking() {
       setInterval(() => {
-        let events = document.querySelectorAll(".map__event-button");
-        for (let evnt of events) {
-          if (getComputedStyle(evnt).opacity === "1") {
-            evnt.style.opacity = "0.2";
-          } else if (!evnt.hasAttribute("checked")) {
-            evnt.style.opacity = "1";
-          }
-        }
-      }, 500);
+        if (this.currentEventIconsBlinkingStatus) {
+          this.eventBlink();
+        } else this.eventUnblink();
+      }, 1000);
     },
     ...mapActions({
       initState: INIT_STATE,
       endTurn: END_TURN,
+      eventBlink: EVENT_BLINK,
+      eventUnblink: EVENT_UNBLINK,
     })
   },
   mounted() {
     this.initState();
-    this.setEventBlinking();
     this.setDraggableMap(document.querySelector(".map"));
+    this.setEventBlinking();
   }
 };
 </script>
