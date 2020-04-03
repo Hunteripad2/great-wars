@@ -1,6 +1,6 @@
 <template>
   <li class="scenarios__item">
-    <router-link :to="pageLink">
+    <router-link :to="pageLink" class="scenarios__link">
       <img :src="require('@/assets/' + image + '.jpg')" class="scenarios__image" />
       <div class="scenarios__blackout">
         <h3 class="scenarios__progress">{{progress}}</h3>
@@ -33,6 +33,9 @@ export default {
 .scenarios__item {
   position: relative;
   width: 30%;
+}
+.scenarios__link:hover {
+  opacity: 1;
 }
 .scenarios__image {
   width: 100%;
@@ -72,7 +75,7 @@ export default {
   .scenarios__progress, .scenarios__date { font-size: 9px; }
 }
 .scenarios__progress {
-  margin-top: 40%;
+  margin-top: 45%;
   margin-left: 15%;
   transition: margin-left 0.3s;
 }

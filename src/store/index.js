@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export const INIT_STATE = "INIT_STATE";
 
 export const SET_ACTIVE_MUSIC = "SET_ACTIVE_MUSIC";
+export const SET_PREVIOUS_MUSIC = "SET_PREVIOUS_MUSIC";
 export const SET_EVENT_DATA = "SET_EVENT_DATA";
 export const END_TURN = "END_TURN";
 export const CHANGE_MUSIC_STATUS = "CHANGE_MUSIC_STATUS";
@@ -16,6 +17,8 @@ export const SHOW_SETTINGS_MENU = "SHOW_SETTINGS_MENU";
 export const SHOW_RESOURCE_MENU = "SHOW_RESOURCE_MENU";
 export const SHOW_MUSIC_MENU = "SHOW_MUSIC_MENU";
 export const SHOW_EVENT_MENU = "SHOW_EVENT_MENU";
+
+export const CHANGE_MUSIC_PLAY_STATUS = "CHANGE_MUSIC_PLAY_STATUS";
 
 export const CHANGE_SETTINGS_TAB_STATUS = "CHANGE_SETTINGS_TAB_STATUS";
 export const CHANGE_RESOURCE_TAB_STATUS = "CHANGE_RESOURCE_TAB_STATUS";
@@ -39,6 +42,8 @@ export default new Vuex.Store({
     currentEventData: null,
 
     playingMusic: null,
+    previousMusic: null,
+    currentMusicPlayStatus: false,
     
     currentSettingsTabStatus: null,
     currentResourceTabStatus: null,
@@ -75,6 +80,12 @@ export default new Vuex.Store({
     playingMusic: state => {
       return state.playingMusic ? state.playingMusic : null;
     },
+    previousMusic: state => {
+      return state.previousMusic ? state.previousMusic : null;
+    },
+    currentMusicPlayStatus: state => {
+      return state.currentMusicPlayStatus ? state.currentMusicPlayStatus : null;
+    },
     currentEventData: state => {
       return state.currentEventData ? state.currentEventData : null;
     },
@@ -101,7 +112,8 @@ export default new Vuex.Store({
       state.currentPeriodIndex = payload.newPeriodIndex;
       state.currentStoryline = payload.newStoryline;
       state.currentMusicList = payload.newMusicList;
-      state.playingMusic = payload.newPlayingMusic
+      state.playingMusic = payload.newPlayingMusic;
+      state.previousMusic = payload.newPreviousMusic;
     },
     [SET_ACTIVE_MUSIC]: (state, payload) => {
       state.playingMusic = payload.newPlayingMusic;
@@ -131,6 +143,12 @@ export default new Vuex.Store({
     [CHANGE_EVENT_ICONS_BLINKING_STATUS]: (state, payload) => {
       state.currentEventIconsBlinkingStatus = payload.newEventIconsBlinkingStatus;
     },
+    [CHANGE_MUSIC_PLAY_STATUS]: (state, payload) => {
+      state.currentMusicPlayStatus = payload.newMusicPlayStatus;
+    },
+    [SET_PREVIOUS_MUSIC]: (state, payload) => {
+      state.previousMusic = payload.newPreviousMusic;
+    },
   },
   actions: {
     [INIT_STATE]: (context) => {
@@ -147,6 +165,7 @@ export default new Vuex.Store({
                                    newStoryline: currentStoryline,
                                    newMusicList: currentMusicList,
                                    newPlayingMusic: initialMusic,
+                                   newPreviousMusic: initialMusic,
                                   });
     },
     [SET_ACTIVE_MUSIC]: (context, payload) => {
@@ -204,6 +223,14 @@ export default new Vuex.Store({
     },
     [EVENT_UNBLINK]: (context) => {
       context.commit(CHANGE_EVENT_ICONS_BLINKING_STATUS, { newEventIconsBlinkingStatus: true });
+    },
+    [CHANGE_MUSIC_PLAY_STATUS]: (context) => {
+      if (context.state.currentMusicPlayStatus) {
+        context.commit(CHANGE_MUSIC_PLAY_STATUS, { newMusicPlayStatus: false });
+      } else context.commit(CHANGE_MUSIC_PLAY_STATUS, { newMusicPlayStatus: true });
+    },
+    [SET_PREVIOUS_MUSIC]: (context) => {
+      context.commit(SET_PREVIOUS_MUSIC, { newPreviousMusic: context.state.playingMusic });
     },
   },
   modules: {}

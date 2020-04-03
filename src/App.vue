@@ -8,20 +8,20 @@
 html, body, #app {
   height: 100%;
 }
-
 body {
+    margin: 0;
     background: #2e2e2e;
     color: white;
     font-family: sans-serif;
-    margin: 0;
     overflow: hidden;
 }
-
 a {
     color: white;
     text-decoration-line: none;
 }
-
+a:hover {
+    opacity: 0.5;
+}
 button {
     background: none;
     border: none;
@@ -129,97 +129,17 @@ button:focus {
 
 
 
-.header__return-to-main-menu {
-    display: flex;
-    align-items: center;
-    margin-left: 8px;
-    z-index: 1;
-}
-.header__return-to-mainmenu-link {
-    font-size: 36px;
-}
 
-.header__top {
-    background-color: #484848;
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    position: relative;
-}
 
-.header__logo {
-    width: 50%;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    z-index: 3;
-}
 
-.header__background-left-image {
-    background-image: url("./assets/header-background-left-image.jpg");
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 100%;
-    opacity: .5;
-    background-position: 0% 15%;
-    background-size: cover;
-}
 
-.header__background-right-image {
-    background-image: url("./assets/header-background-right-image.jpg");
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30%;
-    height: 100%;
-    opacity: .5;
-    background-position: 0% 25%;
-    background-size: cover;
-}
 
-.turn-counter {
-    position: absolute;
-    z-index: 2;
-    left: 42%;
-    width: 16%;
-    line-height: 30px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 0px 0px 90px 90px;
-    background-color: #484848;
-}
 
-.turn-counter__button {
-    width: 35px;
-    vertical-align: middle;
-    margin-left: 3%;
-}
 
-.turn-counter__image {
-    width: 100%;
-}
 
-.music-buttons {
-    display: flex;
-    align-items: center;
-    margin-right: 8px;
-    z-index: 1;
-}
 
-.music-buttons__play-button, 
-.music-buttons__musiclist-button,
-.music-buttons__nextmusic-button {
-    width: 65px;
-}
 
-.music-buttons__play-image,
-.music-buttons__musiclist-image,
-.music-buttons__nextmusic-image,
-.map__event-icon {
-    width: 100%;
-}
+
 
 .music-menu {
     background-color: #2e2e2e;
@@ -270,46 +190,9 @@ button:focus {
     opacity: 0.5;
 }
 
-.map-background {
-    background-image: url("./assets/mapmenu-background-image.jpg");
-    background-repeat: no-repeat;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    z-index: -1;
-}
 
-.map {
-    position: absolute;
-    left: 10%;
-    height: 1080px;
-    width: 1468px;
-    border: 3px dashed black;
-    border-radius: 5%;
-    cursor: grab;
-}
 
-.map__map {
-    position: absolute;
-}
 
-.map__event-field {
-    height: 100%;
-    width: 100%;
-}
-
-.map__event-button {
-    position: absolute;
-    width: 40px;
-    z-index: 1;
-}
-
-.map__event-icon {
-    transition: opacity 0.9s;
-}
 
 .event {
     background-color: #2e2e2e;

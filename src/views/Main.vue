@@ -102,7 +102,4 @@ export default {
 @media (max-width: 640px) {
   .menu__option { font-size: 12px; }
 }
-.menu__option:hover {
-  opacity: 0.5;
-}
 </style>

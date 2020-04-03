@@ -36,14 +36,7 @@ export default {
       if (event.target.className === "music-menu__item-forbid") {
         return 0;
       }
-      //currentMusic.currentTime = 0;
       this.setActiveMusic({ newPlayingMusic: this.currentMusicList[musicIndex] });
-      //let playImage = document.querySelector(".music-buttons__play-image");
-      //if (playImage.parentNode.hasAttribute("pause")) {
-      //  //playImage.src = "pause-music-button.png";
-      //  playImage.parentNode.removeAttribute("pause");
-      //  playImage.title = "Поставить на паузу";
-      //}
     },
     forbidTooltip(musicIndex) {
       if (this.currentMusicList[musicIndex].status === "allowed") {

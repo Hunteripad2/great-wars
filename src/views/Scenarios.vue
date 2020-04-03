@@ -80,7 +80,4 @@ export default {
 @media (max-width: 640px) {
   .return-to-mainmenu__link { font-size: 12px; }
 }
-.return-to-mainmenu__link:hover {
-  opacity: 0.5;
-}
 </style>

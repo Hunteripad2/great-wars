@@ -53,12 +53,6 @@ export default {
     EventWindow,
   },
   computed: {
-    currentMusicList() {
-      return this.$store.getters.currentMusicList
-    },
-    playingMusic() {
-      return this.$store.getters.playingMusic;
-    },
     currentEventIconsBlinkingStatus() {
       return this.$store.getters.currentEventIconsBlinkingStatus;
     },
@@ -130,3 +124,118 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.header__return-to-main-menu {
+  margin-left: 3%;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+}
+.header__return-to-mainmenu-link {
+  font-size: 36px;
+}
+@media (max-width: 1600px) {
+  .header__return-to-mainmenu-link { font-size: 30px; }
+}
+@media (max-width: 1280px) {
+  .header__return-to-mainmenu-link { font-size: 24px; }
+}
+@media (max-width: 960px) {
+  .header__return-to-mainmenu-link { font-size: 18px; }
+}
+@media (max-width: 640px) {
+  .header__return-to-mainmenu-link { font-size: 12px; }
+}
+.header__top {
+  background-color: #484848;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  z-index: 2;
+}
+.header__logo {
+  width: 50%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 3%;
+  z-index: 3;
+}
+.header__background-left-image,
+.header__background-right-image {
+  position: absolute;
+  top: 0;
+  width: 30%;
+  height: 100%;
+  opacity: 0.5;
+}
+.header__background-left-image {
+  background-image: url("../assets/header-background-left-image.jpg");
+  background-position: 0% 15%;
+  background-size: cover;
+  left: 0;
+}
+.header__background-right-image {
+  background-image: url("../assets/header-background-right-image.jpg");
+  background-position: 0% 25%;
+  background-size: cover;
+  right: 0;
+}
+.turn-counter {
+  background-color: #484848;
+  position: absolute;
+  left: 42%;
+  width: 16%;
+  line-height: 35px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 0px 0px 90px 90px;
+  cursor: default;
+  z-index: 2;
+}
+@media (max-width: 1600px) {
+  .turn-counter { line-height: 28px; font-size: 16px; }
+}
+@media (max-width: 1280px) {
+  .turn-counter { line-height: 21px; font-size: 12px; }
+}
+@media (max-width: 960px) {
+  .turn-counter { line-height: 14px; font-size: 8px; }
+}
+@media (max-width: 640px) {
+  .turn-counter { line-height: 7px; font-size: 4px; }
+}
+.turn-counter__button {
+  margin-left: 5%;
+  padding: 0;
+  width: 12%;
+  vertical-align: middle;
+}
+.turn-counter__image {
+  width: 100%;
+}
+.map-background {
+  background-image: url("../assets/mapmenu-background-image.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.map {
+  position: absolute;
+  left: 10%;
+  height: 1080px;
+  width: 1468px;
+  border: 3px dashed black;
+  border-radius: 5%;
+  cursor: grab;
+}
+.map__map {
+  position: absolute;
+}
+</style>

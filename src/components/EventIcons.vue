@@ -73,4 +73,17 @@ export default {
 </script>
 
 <style scoped>
+.map__event-field {
+  height: 100%;
+  width: 100%;
+}
+.map__event-button {
+  position: absolute;
+  width: 40px;
+  z-index: 1;
+}
+.map__event-icon {
+  width: 100%;
+  transition: opacity 0.9s;
+}
 </style>
